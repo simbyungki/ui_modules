@@ -1,0 +1,573 @@
+<!doctype html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <!-- noto sans webfont -->
+    <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
+    <!-- custom scrollbar -->
+    <link href='http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css' rel='stylesheet' type='text/css'>
+    <!-- jquery -->
+    <script type="text/javascript" src="js/jquery.1.11.1.min.js"></script>
+    <!-- custom scrollbar -->
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- number countup -->
+    <script type="text/javascript" src="js/countUp.min.js"></script>
+    <!-- tree view -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.treeview.css">
+    <script type="text/javascript" src="js/jquery.treeview.js"></script>
+    <!-- masonry -->
+    <script type="text/javascript" src="js/masonry.pkgd.js"></script>
+    <!-- swiper.js -->
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <!-- make -->
+    <script type="text/javascript" src="js/bk.js"></script>
+<style>
+.header {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    width:100%;
+    height:100px;
+    border-bottom:1px solid #666;
+    box-shadow:4px 4px 4px #ddd;
+    background:#fff;
+}
+.header .ci {
+    float:left;
+    padding:30px 0 0;
+    width:15%;
+    text-align:center;
+}
+.menu {
+    position:relative;
+    float:left;
+    padding-top:10px;
+    width:80%;
+    padding-bottom:4px;
+}
+.menu li {
+    float:left;
+    width:20%;
+}
+.menu li a {
+    display:block;
+    padding:0 5px;
+    height:87px;
+    line-height:87px;
+    color:#666;
+    font-size:22px;
+    font-weight:700;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    transition:all .5s;
+}
+.menu li a:hover {
+    color:#222;
+    transition:all .5s;
+}
+.menu .bar {
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:20%;
+    height:4px;
+    background:#888;
+}
+.menu .bar.on {
+    background:linear-gradient(#666, #888);
+    transition:all .5s;
+}
+.contents {
+    margin:0 auto;
+    padding:100px 0 80px;
+    min-height:2000px;
+    width:1000px;
+}
+.contents .cs_scrollbox {
+    margin:20px auto;
+    padding:20px 0 20px 20px;
+    height:300px;
+    border:3px solid #ddd;
+}
+.contents .cs_scrollbox .mCSB_dragger_bar {
+    border-radius:0;
+}
+.contents .cs_scrollbox p {
+    line-height:26px;
+    color:#444;
+    font-size:18px;
+}
+.contents .count_box {
+    margin:20px auto;
+    padding:30px 0;
+    text-align:center;
+    border:3px solid #ddd;
+}
+.contents .count_box p {
+    letter-spacing:-3px;
+    font-size:60px;
+    font-weight:600;
+}
+.contents .category_tree {
+    padding:15px;
+    border:3px solid #ddd;
+}
+
+.contents .tooltips {
+    margin-top:20px;
+    padding:15px;
+    border:3px solid #ddd;
+}
+.contents .tooltips .tooltip {
+    position:relative;
+    display:inline-block;
+    margin-right:15px;
+    padding:10px;
+    font-size:14px;
+    font-weight:600;
+}
+.contents .tooltips .tooltip .box {
+    position:absolute;
+    z-index:1;
+    visibility:hidden;
+    padding:5px;
+    color:#fff;
+    background:#555;
+    opacity:0;
+    transition:opacity .3s;
+}
+.contents .tooltips .tooltip.bottom .box {
+    bottom:-20px;
+}
+.contents .tooltips .tooltip.top .box {
+    bottom:26px;
+}
+.contents .tooltips .tooltip.left .box {
+    right:85%;
+}
+.contents .tooltips .tooltip.right .box {
+    left:85%;
+}
+.contents .tooltips .tooltip:hover .box {
+    visibility:visible;
+    opacity:1;
+}
+
+.process_box {
+    position:fixed;
+    bottom:0;
+    left:0;
+    z-index:100;
+    width:100%;
+    height:15px;
+    background:#ddd;
+}
+.process_box .bar {
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:15px;
+    background:#c00;
+}
+.btn_top {
+    display:none;
+    position:fixed;
+    bottom:40px;
+    right:20px;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+    background:#222;
+    border-radius:50em;
+}
+.btn_top:link,
+.btn_top:visited {
+    color:#fff;
+}
+.contents .grid {
+    margin:20px auto 0;
+    padding:15px;
+    width:calc(100% - 6px - 30px);
+    border:3px solid #ddd;
+}
+.contents .grid .item {
+    float:left;
+    width:311.33px;
+    margin-bottom:15px;
+    height:100px;
+    line-height:100px;
+    color:#fff;
+    font-size:36px;
+    text-align:center;
+    background:#888;
+    border:2px solid #000;
+    box-sizing:border-box;
+}
+
+.contents .swiper-container {
+    margin:20px auto 0;
+    padding:15px;
+    width:calc(100% - 6px - 30px);
+    border:3px solid #ddd;
+}
+.contents .swiper-container li {
+    height:300px;
+    line-height:300px;
+    color:#444;
+    font-size:50px;
+    text-align:center;
+}
+.contents .swiper-container.swiper_type03 li {
+    height:auto;
+}
+.contents .swiper-container li img {
+    display:block;
+    max-width:100%;
+    height:auto;
+}
+</style>
+</head>
+<body>
+<!-- skip navigation -->
+<div id="skipNav">
+    <ul>
+        <li><a href="#container">본문 바로가기</a></li>
+    </ul>
+</div>
+
+<header class="header clear_fix">
+    <h1 class="ci"><img src="http://image.uplus.co.kr/images/renewal/images/cm/pc/common/gnb/logo_uplus_171026.gif" alt="lg u+"></h1>
+    <nav class="menu">
+        <ul class="clearfix">
+            <li class="on this" ><a href="javascript:;">쇼핑</a></li>
+            <li><a href="javascript:;">상품서비스</a></li>
+            <li><a href="javascript:;">내정보관리</a></li>
+            <li><a href="javascript:;">고객지원</a></li>
+            <li><a href="javascript:;">혜택보기</a></li>
+        </ul>
+        <div class="bar"></div>
+    </nav>
+</header>
+<div class="contents">
+
+<style>
+.toggle_box {position:relative; padding:40px 0 20px; text-align:right;}
+.toggle_box input[type="checkbox"] {position:absolute; top:0; left:0;}
+.toggle_box label {display:inline-block; position:relative; width:60px; height:25px; border:2px solid #999; border-radius:50em; cursor:pointer; transition:all 0.2s;}
+.toggle_box label:before {display:block; content:"off"; padding-left:10px; width:calc(100% - 10px); line-height:25px; color:#999; text-align:left; transition:all 0.2s;}
+.toggle_box label:after {display:block; content:""; position:absolute; top:0; left:calc(100% - 25px); width:25px; height:25px; border-radius:50em; background:#999; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label {border:2px solid #c00; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label:before {content:"on"; padding-right:15px; padding-left:0; color:#c00; text-align:right; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label:after {left:0; background:#c00; transition:all 0.2s;}
+</style>
+
+    <!-- toggle -->
+    <div class="toggle_box">
+        <div class="">
+            <input type="checkbox" id="check" name="check">
+            <label for="check"></label>
+        </div>
+    </div>
+    <!-- custom scroll -->
+    <div class="cs_scrollbox" data-mcs-theme="dark">
+        <p>
+            The element(s) you want to add scrollbar(s) should have the typical CSS properties of an overflowed block which are a height (or max-height) value, an overflow value of auto (or hidden) and content long enough to require scrolling. For horizontal scrollbar, the element should have a width (or max-width) value set.<br>
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.<br><br>
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.<br><br>
+            The element(s) you want to add scrollbar(s) should have the typical CSS properties of an overflowed block which are a height (or max-height) value, an overflow value of auto (or hidden) and content long enough to require scrolling. For horizontal scrollbar, the element should have a width (or max-width) value set.<br>
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.<br><br>
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+        </p>
+    </div>
+    <!-- count box -->
+    <div class="count_box">
+        <p id="num01"></p>
+    </div>
+    <!-- treeview -->
+    <div class="category_tree">
+        <ul id="browser" class="filetree">
+            <li>
+                <span class="folder">폴더1</span>
+                <ul>
+                    <li>
+                        <span class="file">폴더1 - 파일1</span>
+                    </li>
+                    <li>
+                        <span class="file">폴더1 - 파일2</span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="folder">폴더2</span>
+                <ul>
+                    <li>
+                        <span class="file">폴더2 - 파일1</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- tooltip -->
+    <div class="tooltips">
+        <div class="tooltip top left">text-top-left
+            <span class="box">Tooltip</span>
+        </div>
+        <div class="tooltip top right">text-top-right
+            <span class="box">Tooltip</span>
+        </div>
+        <div class="tooltip bottom left">text-bottom-left
+            <span class="box">Tooltip</span>
+        </div>
+        <div class="tooltip bottom right">text-bottom-right
+            <span class="box">Tooltip</span>
+        </div>
+    </div>
+    <!-- marsony (category) -->
+    <div class="grid">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+    </div>
+    <!-- swipe contents -->
+    <div class="swiper_type01 swiper-container">
+       <ul class="swiper-wrapper">
+            <li class="swiper-slide">1</li>
+            <li class="swiper-slide">2</li>
+            <li class="swiper-slide">3</li>
+            <li class="swiper-slide">4</li>
+            <li class="swiper-slide">5</li>
+            <li class="swiper-slide">6</li>
+       </ul>
+       <div class="swiper-pagination"></div>
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="swiper_type02 swiper-container">
+       <ul class="swiper-wrapper">
+            <li class="swiper-slide">1</li>
+            <li class="swiper-slide">2</li>
+            <li class="swiper-slide">3</li>
+            <li class="swiper-slide">4</li>
+            <li class="swiper-slide">5</li>
+            <li class="swiper-slide">6</li>
+       </ul>
+       <div class="swiper-pagination"></div>
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+    </div>
+    <a href="javascript:;" class="btn_destory">2번 스와이프 파괴</a>
+
+    <div class="swiper_type03 swiper-container">
+       <ul class="swiper-wrapper">
+            <li class="swiper-slide">
+                <img src="http://lorempixel.com/1600/1200/nature/1/" alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </li>
+            <li class="swiper-slide">
+                <img src="http://lorempixel.com/1600/1200/nature/2/" alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </li>
+            <li class="swiper-slide">
+                <img src="http://lorempixel.com/1600/1200/nature/3/" alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </li>
+       </ul>
+       <div class="swiper-pagination"></div>
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- 스크롤 데이터 로드 : 더이상 가져올 데이터가 없을 경우 아래 div 태그 숨김 -->
+    <div style="height:100px;"></div>
+
+
+    <!-- page bar process guide -->
+    <div class="process_box">
+        <div class="bar"></div>
+    </div>
+    <!-- btn top -->
+    <a href="javascript:;" id="btn_top" class="btn_top">TOP</a>
+</div>
+<script>
+$(document).ready(function(){
+    //nav (animate bar)
+    var $nav = $('.menu');
+    var $navLi = $('.menu li');
+    var $navBar = $('.menu .bar');
+    var choiceIdx = $('.menu li.this').index();
+    $navLi.on('mouseenter', function(){
+        if($(this).hasClass('on')){
+            return false;
+        }
+        var idx = $navLi.index(this);
+        $navLi.removeClass('on');
+        $navLi.eq(idx).addClass('on');
+        $navBar.stop().animate({
+            left: idx * 20 + '%'
+        }, 200);
+    });
+
+    $nav.on('mouseleave', function(){
+       $navBar.stop().animate({
+            left: choiceIdx * 20 + '%'
+        }, 200);
+       $navLi.removeClass('on');
+       $('.menu li.this').addClass('on');
+    });
+
+    //scroll bar (http://manos.malihu.gr/jquery-custom-content-scroller/)
+    $('.contents .cs_scrollbox').mCustomScrollbar({
+       axis : 'y',
+       theme: 'dark'
+    });
+
+    //file tree
+    $('.category_tree').treeview({});
+
+    //masonry
+    var masonry = new Masonry('.grid', {
+        // options
+        itemSelector: '.item',
+        gutter: 15
+    });
+
+    //swiper type01
+    var swiper01 = new Swiper('.swiper_type01', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        //loop: true,
+        pagination: {
+            el: '.swiper_type01 .swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
+        },
+        navigation: {
+            nextEl: '.swiper_type01 .swiper-button-next',
+            prevEl: '.swiper_type01 .swiper-button-prev',
+        },
+    });
+    //swiper type02
+    var swiper02 = new Swiper('.swiper_type02', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        //loop: true,
+        pagination: {
+            el: '.swiper_type02 .swiper-pagination',
+            type: 'fraction'
+        },
+        navigation: {
+            nextEl: '.swiper_type02 .swiper-button-next',
+            prevEl: '.swiper_type02 .swiper-button-prev',
+        },
+    });
+
+    //swiper type02 destroy
+    $('.btn_destory').on('click', function(){
+        swiper02.destroy(false, false);   //(deleteInstance, cleanStyles)
+    });
+
+    //swiper type03
+    var swiper03 = new Swiper('.swiper_type03', {
+        // Enable lazy loading
+        lazy: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        autoHeight: true,
+        //loop: true,
+        pagination: {
+            el: '.swiper_type03 .swiper-pagination',
+            type: 'fraction'
+        },
+        navigation: {
+            nextEl: '.swiper_type03 .swiper-button-next',
+            prevEl: '.swiper_type03 .swiper-button-prev',
+        },
+    });
+
+    //count up (http://inorganik.github.io/countUp.js/)
+    var countUp = new CountUp('num01', 0, 4149, 0, 3, { //start num, end num, demical, duration
+      useEasing: true,
+      useGrouping: true,
+      separator: ',',
+      decimal: '.'
+    });
+    countUp.start();
+
+    //btn top
+    $('#btn_top').on('click', function(){
+        $('html, body').delay(100).animate({
+            scrollTop: 0
+        }, 400);
+    });
+
+    /****************
+    ##스크롤 바닥 시 추가 데이터 로드
+    ****************/
+    var isLoadingFinished = true;
+    $(window).scroll(function(){
+        //스크롤이 페이지 끝에 왔을 시
+        if($(window).scrollTop() >= $(document).height() - $(window).height() - 100){
+            if(!isLoadingFinished) {return;}
+            isLoadingFinished = false;
+            //로딩이미지 출력 (미적용)
+            //$('.loading_img').fadeIn();
+            $.ajax({
+                url: '../ajax_data.html',
+                success: function(html){
+                    isLoadingFinished = true;
+                    if(html){
+                        var $moreItems = $(html).filter('.notice_list_items').children('li');
+                        var $itemBox = $('.notice_list ul');
+                        $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
+                        $($moreItems).animate({'top':'0','opacity':'1'}, 300, 'easeOutCubic').appendTo($itemBox);
+                        //$('.loading_img').fadeOut();
+                    }else{
+                        return false;
+                        //$('.loading_img').html('<p>No more posts to show.</p>');
+                    }
+                },
+                error: function(){
+                    isLoadingFinished = true;
+                    alert('error!');
+                }
+            });
+        }
+    });
+});
+
+//page scroll percent guide, scroll event
+$(window).scroll(function(){
+    var scrollTop = $(window).scrollTop();
+    var docHeight = $(document).height();
+    var winHeight = $(window).height();
+    var scrollPercent = (scrollTop) / (docHeight - winHeight);
+    var scrollPercentRounded = Math.round(scrollPercent*100);
+    $('.process_box .bar').css({
+        'width': scrollPercentRounded + '%'
+    });
+
+    if(scrollTop > 100){
+        $('#btn_top').fadeIn(300);
+    }else{
+        $('#btn_top').fadeOut(300);
+    }
+});
+</script>
+
+</body>
+</html>
