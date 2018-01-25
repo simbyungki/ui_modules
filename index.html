@@ -4,11 +4,11 @@
     <!-- noto sans webfont -->
     <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
     <!-- custom scrollbar -->
-    <link href='http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css' rel='stylesheet' type='text/css'>
+    <link href='css/jquery.mCustomScrollbar.min.css' rel='stylesheet' type='text/css'>
     <!-- jquery -->
     <script type="text/javascript" src="js/jquery.1.11.1.min.js"></script>
     <!-- custom scrollbar -->
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- number countup -->
     <script type="text/javascript" src="js/countUp.min.js"></script>
     <!-- tree view -->
@@ -543,7 +543,7 @@ $(document).ready(function(){
                 },
                 error: function(){
                     isLoadingFinished = true;
-                    alert('error!');
+                    console.log('error!');
                 }
             });
         }
