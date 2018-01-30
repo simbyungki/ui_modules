@@ -99,6 +99,14 @@
     min-height:2000px;
     width:1000px;
 }
+.toggle_box {position:relative; padding:40px 0 20px; text-align:right;}
+.toggle_box input[type="checkbox"] {position:absolute; top:0; left:-9999px;}
+.toggle_box label {display:inline-block; position:relative; width:60px; height:25px; border:2px solid #999; border-radius:50em; cursor:pointer; transition:all 0.2s;}
+.toggle_box label:before {display:block; content:"off"; padding-left:10px; width:calc(100% - 10px); line-height:25px; color:#999; text-align:left; transition:all 0.2s;}
+.toggle_box label:after {display:block; content:""; position:absolute; top:0; left:calc(100% - 25px); width:25px; height:25px; border-radius:50em; background:#999; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label {border:2px solid #c00; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label:before {content:"on"; padding-right:15px; padding-left:0; color:#c00; text-align:right; transition:all 0.2s;}
+.toggle_box input[type="checkbox"]:checked + label:after {left:0; background:#c00; transition:all 0.2s;}
 .contents .cs_scrollbox {
     margin:20px auto;
     padding:20px 0 20px 20px;
@@ -270,17 +278,6 @@
     </nav>
 </header>
 <div class="contents">
-
-<style>
-.toggle_box {position:relative; padding:40px 0 20px; text-align:right;}
-.toggle_box input[type="checkbox"] {position:absolute; top:0; left:-9999px;}
-.toggle_box label {display:inline-block; position:relative; width:60px; height:25px; border:2px solid #999; border-radius:50em; cursor:pointer; transition:all 0.2s;}
-.toggle_box label:before {display:block; content:"off"; padding-left:10px; width:calc(100% - 10px); line-height:25px; color:#999; text-align:left; transition:all 0.2s;}
-.toggle_box label:after {display:block; content:""; position:absolute; top:0; left:calc(100% - 25px); width:25px; height:25px; border-radius:50em; background:#999; transition:all 0.2s;}
-.toggle_box input[type="checkbox"]:checked + label {border:2px solid #c00; transition:all 0.2s;}
-.toggle_box input[type="checkbox"]:checked + label:before {content:"on"; padding-right:15px; padding-left:0; color:#c00; text-align:right; transition:all 0.2s;}
-.toggle_box input[type="checkbox"]:checked + label:after {left:0; background:#c00; transition:all 0.2s;}
-</style>
 
     <!-- toggle -->
     <div class="toggle_box">
