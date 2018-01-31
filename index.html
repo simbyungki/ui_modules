@@ -542,11 +542,14 @@ $(document).ready(function(){
                 success: function(html){
                     isLoadingFinished = true;
                     if(html){
+                        alert('browser scroll end!!');
+                        /*
                         var $moreItems = $(html).filter('.notice_list_items').children('li');
                         var $itemBox = $('.notice_list ul');
                         $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
                         $($moreItems).animate({'top':'0','opacity':'1'}, 300, 'easeOutCubic').appendTo($itemBox);
                         //$('.loading_img').fadeOut();
+                        */
                     }else{
                         return false;
                         //$('.loading_img').html('<p>No more posts to show.</p>');
