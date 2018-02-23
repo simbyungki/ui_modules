@@ -15,7 +15,8 @@
     <meta property="og:description" content="project description">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/base.css">
-    <!-- webfont -->
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- custom scrollbar -->
     <link href='css/jquery.mCustomScrollbar.min.css' rel='stylesheet' type='text/css'>
     <!-- jquery -->
@@ -35,75 +36,20 @@
     <!-- make -->
     <script type="text/javascript" src="js/bk.js"></script>
 <style>
-.header {
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1000;
-    width:100%;
-    height:100px;
-    border-bottom:1px solid #666;
-    box-shadow:4px 4px 4px #ddd;
-    background:#fff;
-}
-.header .ci {
-    float:left;
-    padding:30px 0 0;
-    width:15%;
-    text-align:center;
-}
-.menu {
-    position:relative;
-    float:left;
-    padding-top:10px;
-    width:80%;
-    padding-bottom:4px;
-}
-.menu li {
-    float:left;
-    width:20%;
-}
-
-
-
-
-.menu li a {
-    display:block;
-    padding:0 5px;
-    height:87px;
-    line-height:87px;
-    color:#666;
-    font-size:22px;
-    font-weight:700;
-    text-align:center;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    transition:all .5s;
-}
-.menu li a:hover {
-    color:#222;
-    transition:all .5s;
-}
-.menu .bar {
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:20%;
-    height:4px;
-    background:#888;
-}
-.menu .bar.on {
-    background:linear-gradient(#666, #888);
-    transition:all .5s;
-}
-.contents {
-    margin:0 auto;
-    padding:100px 0 80px;
-    min-height:2000px;
-    width:1000px;
-}
-.toggle_box {position:relative; padding:40px 0 20px; text-align:right;}
+.header {position:fixed; top:0; left:0; z-index:1000; width:100%; height:100px; border-bottom:1px solid #666;
+    box-shadow:4px 4px 4px #ddd; background:#fff;}
+.header .ci {float:left; padding:30px 0 0; width:15%; font-size:26px; text-align:center;}
+.menu {position:relative; float:left; padding-top:10px; width:80%; padding-bottom:4px;}
+.menu li {float:left; width:20%;}
+.menu li a {display:block; padding:0 5px; height:87px; line-height:87px; color:#666; font-size:22px; font-weight:700; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:all .5s;}
+.menu li a:hover {color:#222; transition:all .5s;}
+.menu .bar {position:absolute; left:0; bottom:0; width:20%; height:4px; background:#888;}
+.menu .bar.on {background:linear-gradient(#666, #888); transition:all .5s;}
+.contents {margin:0 auto; padding:110px 0 40px; min-height:2000px; width:1000px;}
+.title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
+.star_rating span {font-size:20px;}
+.star_rating span.checked {color:red;}
+.toggle_box {position:relative; text-align:right;}
 .toggle_box input[type="checkbox"] {position:absolute; top:0; left:-9999px;}
 .toggle_box label {display:inline-block; position:relative; width:60px; height:25px; border:2px solid #999; border-radius:50em; cursor:pointer; transition:all 0.2s;}
 .toggle_box label:before {display:block; content:"off"; padding-left:10px; width:calc(100% - 10px); line-height:25px; color:#999; text-align:left; transition:all 0.2s;}
@@ -111,153 +57,40 @@
 .toggle_box input[type="checkbox"]:checked + label {border:2px solid #c00; transition:all 0.2s;}
 .toggle_box input[type="checkbox"]:checked + label:before {content:"on"; padding-right:15px; padding-left:0; color:#c00; text-align:right; transition:all 0.2s;}
 .toggle_box input[type="checkbox"]:checked + label:after {left:0; background:#c00; transition:all 0.2s;}
-.contents .cs_scrollbox {
-    margin:20px auto;
-    padding:20px 0 20px 20px;
-    height:300px;
-    border:3px solid #ddd;
-}
-.contents .cs_scrollbox .mCSB_dragger_bar {
-    border-radius:0;
-}
-.contents .cs_scrollbox p {
-    line-height:26px;
-    color:#444;
-    font-size:18px;
-}
-.contents .count_box {
-    margin:20px auto;
-    padding:30px 0;
-    text-align:center;
-    border:3px solid #ddd;
-}
-.contents .count_box p {
-    letter-spacing:-3px;
-    font-size:60px;
-    font-weight:600;
-}
-.contents .category_tree {
-    padding:15px;
-    border:3px solid #ddd;
-}
-
-.contents .tooltips {
-    margin-top:20px;
-    padding:15px;
-    border:3px solid #ddd;
-}
-.contents .tooltips .tooltip {
-    position:relative;
-    display:inline-block;
-    margin-right:15px;
-    padding:10px;
-    font-size:14px;
-    font-weight:600;
-}
-.contents .tooltips .tooltip .box {
-    position:absolute;
-    z-index:1;
-    visibility:hidden;
-    padding:5px;
-    color:#fff;
-    background:#555;
-    opacity:0;
-    transition:opacity .3s;
-}
-.contents .tooltips .tooltip.bottom .box {
-    bottom:-20px;
-}
-.contents .tooltips .tooltip.top .box {
-    bottom:26px;
-}
-.contents .tooltips .tooltip.left .box {
-    right:85%;
-}
-.contents .tooltips .tooltip.right .box {
-    left:85%;
-}
-.contents .tooltips .tooltip:hover .box {
-    visibility:visible;
-    opacity:1;
-}
-
-.process_box {
-    position:fixed;
-    bottom:0;
-    left:0;
-    z-index:100;
-    width:100%;
-    height:15px;
-    background:#ddd;
-}
-.process_box .bar {
-    position:absolute;
-    bottom:0;
-    left:0;
-    height:15px;
-    background:#c00;
-}
-.btn_top {
-    display:none;
-    position:fixed;
-    bottom:40px;
-    right:20px;
-    z-index:1000;
-    width:60px;
-    height:60px;
-    line-height:60px;
-    color:#fff;
-    font-size:18px;
-    font-weight:700;
-    text-align:center;
-    background:#222;
-    border-radius:50em;
-}
+.cs_scrollbox {margin:0 auto; padding:20px 0 20px 20px; height:300px; border:3px solid #ddd;}
+.cs_scrollbox .mCSB_dragger_bar {border-radius:0;}
+.cs_scrollbox p {line-height:26px; color:#444; font-size:18px;}
+.count_box {margin:0 auto; padding:30px 0; text-align:center; border:3px solid #ddd;}
+.count_box p {letter-spacing:-3px; font-size:60px; font-weight:600;}
+.category_tree {padding:15px; border:3px solid #ddd;}
+.tooltips {margin-top:20px; padding:15px; border:3px solid #ddd;}
+.tooltips .tooltip {position:relative; display:inline-block; margin-right:15px; padding:10px;
+    font-size:14px; font-weight:600;}
+.tooltips .tooltip .box {position:absolute; z-index:1; visibility:hidden; padding:5px; color:#fff;
+    background:#555; opacity:0; transition:opacity .3s;}
+.tooltips .tooltip.bottom .box {bottom:-20px;}
+.tooltips .tooltip.top .box {bottom:26px;}
+.tooltips .tooltip.left .box {right:85%;}
+.tooltips .tooltip.right .box {left:85%;}
+.tooltips .tooltip:hover .box {visibility:visible; opacity:1;}
+.process_box {position:fixed; bottom:0; left:0; z-index:100; width:100%; height:15px; background:#ddd;}
+.process_box .bar {position:absolute; bottom:0; left:0; height:15px; background:#c00;}
+.btn_top {display:none; position:fixed; bottom:40px; right:20px; z-index:1000; width:60px; height:60px; line-height:60px; color:#fff; font-size:18px; font-weight:700; text-align:center; background:#222;    border-radius:50em;}
 .btn_top:link,
-.btn_top:visited {
-    color:#fff;
-}
-.contents .grid {
-    margin:20px auto 0;
-    padding:15px;
-    width:calc(100% - 6px - 30px);
-    border:3px solid #ddd;
-}
-.contents .grid .item {
-    float:left;
-    width:311.33px;
-    margin-bottom:15px;
-    height:100px;
-    line-height:100px;
-    color:#fff;
-    font-size:36px;
-    text-align:center;
-    background:#888;
-    border:2px solid #000;
-    box-sizing:border-box;
+.btn_top:visited {color:#fff;}
+.grid {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px);}
+.grid .item {float:left; width:311.33px; margin-bottom:15px; height:100px; line-height:100px; color:#fff; font-size:36px; text-align:center; background:#888; border:2px solid #000; box-sizing:border-box;}
+.swiper-container {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
+.swiper-container li {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
+.swiper-container.swiper_type03 li {height:auto;}
+.swiper-container li img {display:block; max-width:100%; height:auto;}
+
+.loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em;-webkit-animation: spin 1.5s linear infinite;}
+@keyframes spin {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
 }
 
-.contents .swiper-container {
-    margin:20px auto 0;
-    padding:15px;
-    width:calc(100% - 6px - 30px);
-    border:3px solid #ddd;
-}
-.contents .swiper-container li {
-    height:300px;
-    line-height:300px;
-    color:#444;
-    font-size:50px;
-    text-align:center;
-}
-.contents .swiper-container.swiper_type03 li {
-    height:auto;
-}
-.contents .swiper-container li img {
-    display:block;
-    max-width:100%;
-    height:auto;
-}
 </style>
 </head>
 <body>
@@ -268,28 +101,46 @@
     </ul>
 </div>
 
+<!-- navigation bar animation -->
 <header class="header clear_fix">
-    <h1 class="ci"><img src="http://image.uplus.co.kr/images/renewal/images/cm/pc/common/gnb/logo_uplus_171026.gif" alt="lg u+"></h1>
+    <h1 class="ci">BI</h1>
     <nav class="menu">
         <ul class="clearfix">
-            <li class="on this" ><a href="javascript:;">쇼핑</a></li>
-            <li><a href="javascript:;">상품서비스</a></li>
-            <li><a href="javascript:;">내정보관리</a></li>
-            <li><a href="javascript:;">고객지원</a></li>
-            <li><a href="javascript:;">혜택보기</a></li>
+            <li class="on this" ><a href="javascript:;">nav01</a></li>
+            <li><a href="javascript:;">nav02</a></li>
+            <li><a href="javascript:;">nav03</a></li>
+            <li><a href="javascript:;">nav04</a></li>
+            <li><a href="javascript:;">nav05</a></li>
         </ul>
         <div class="bar"></div>
     </nav>
 </header>
 <div class="contents">
-    <!-- toggle -->
+<!-- loader -->
+    <h2 class="title">Loader with CSS</h2>
+    <div class="loader"></div>
+
+<!-- star rating -->
+    <h2 class="title">Star Rating with font awesome</h2>
+    <div class="star_rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </div>
+
+<!-- toggle switch -->
+    <h2 class="title">on/off switch with CSS</h2>
     <div class="toggle_box">
         <div class="">
             <input type="checkbox" id="check" name="check">
             <label for="check"></label>
         </div>
     </div>
-    <!-- custom scroll -->
+
+<!-- custom scroll -->
+    <h2 class="title">Custom scroll with mCustomScrollbar.js</h2>
     <div class="cs_scrollbox" data-mcs-theme="dark">
         <p>
             The element(s) you want to add scrollbar(s) should have the typical CSS properties of an overflowed block which are a height (or max-height) value, an overflow value of auto (or hidden) and content long enough to require scrolling. For horizontal scrollbar, the element should have a width (or max-width) value set.<br>
@@ -300,11 +151,15 @@
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
         </p>
     </div>
-    <!-- count box -->
+
+<!-- count box -->
+    <h2 class="title">Count up number with countUp.js</h2>
     <div class="count_box">
         <p id="num01"></p>
     </div>
-    <!-- treeview -->
+
+<!-- treeview -->
+    <h2 class="title">Tree menu with jquery.treeview.js</h2>
     <div class="category_tree">
         <ul id="browser" class="filetree">
             <li>
@@ -328,7 +183,9 @@
             </li>
         </ul>
     </div>
-    <!-- tooltip -->
+
+<!-- tooltip -->
+    <h2 class="title">CSS tooltips</h2>
     <div class="tooltips">
         <div class="tooltip top left">text-top-left
             <span class="box">Tooltip</span>
@@ -343,20 +200,9 @@
             <span class="box">Tooltip</span>
         </div>
     </div>
-    <!-- marsony (category) -->
-    <div class="grid">
-        <div class="item">1</div>
-        <div class="item">2</div>
-        <div class="item">3</div>
-        <div class="item">4</div>
-        <div class="item">5</div>
-        <div class="item">6</div>
-        <div class="item">7</div>
-        <div class="item">8</div>
-        <div class="item">9</div>
-        <div class="item">10</div>
-    </div>
-    <!-- swipe contents -->
+
+<!-- swipe contents -->
+    <h2 class="title">Swipe contents swiper.js</h2>
     <div class="swiper_type01 swiper-container">
        <ul class="swiper-wrapper">
             <li class="swiper-slide">1</li>
@@ -406,17 +252,33 @@
        <div class="swiper-button-prev"></div>
     </div>
 
-    <!-- 스크롤 데이터 로드 : 더이상 가져올 데이터가 없을 경우 아래 div 태그 숨김 -->
+<!-- 스크롤 데이터 로드 : 더이상 가져올 데이터가 없을 경우 아래 div 태그 숨김 -->
     <div style="height:100px;"></div>
 
-
-    <!-- page bar process guide -->
+<!-- page bar process guide -->
     <div class="process_box">
         <div class="bar"></div>
     </div>
-    <!-- btn top -->
+<!-- btn top -->
     <a href="javascript:;" id="btn_top" class="btn_top">TOP</a>
 </div>
+
+<!-- masony (category) -->
+    <h2 class="title">grid layout with masony.js</h2>
+    <div class="grid">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+    </div>
+
+
 <script>
 $(document).ready(function(){
     //nav (animate bar)
@@ -445,7 +307,7 @@ $(document).ready(function(){
     });
 
     //scroll bar (http://manos.malihu.gr/jquery-custom-content-scroller/)
-    $('.contents .cs_scrollbox').mCustomScrollbar({
+    $('.cs_scrollbox').mCustomScrollbar({
        axis : 'y',
        theme: 'dark'
     });
@@ -457,7 +319,8 @@ $(document).ready(function(){
     var masonry = new Masonry('.grid', {
         // options
         itemSelector: '.item',
-        gutter: 15
+        gutter: 15,
+        fitWidth: true
     });
 
     //swiper type01
@@ -545,7 +408,7 @@ $(document).ready(function(){
                 success: function(html){
                     isLoadingFinished = true;
                     if(html){
-                        alert('browser scroll end!!');
+                        console.log('browser scroll end!!');
                         /*
                         var $moreItems = $(html).filter('.notice_list_items').children('li');
                         var $itemBox = $('.notice_list ul');
