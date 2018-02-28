@@ -458,6 +458,7 @@ $(document).ready(function(){
                 if(html){
                     console.log(html);
                     var $moreItems = $(html).filter('.add_list ul').children('li');
+                    console.log($moreItems);
                     var $itemBox = $('.add_list ul');
                     $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
                     $($moreItems).animate({'top':'0','opacity':'1'}, 300, 'easeOutCubic').appendTo($itemBox);
