@@ -74,6 +74,12 @@
 .tooltips .tooltip.left .box {right:85%;}
 .tooltips .tooltip.right .box {left:85%;}
 .tooltips .tooltip:hover .box {visibility:visible; opacity:1;}
+.add_list li {border:1px solid #ddd; border-top:0;}
+.add_list li:first-child {border-top:1px solid #ddd;}
+.add_list li a {display:block;}
+.add_list li a:hover {background:#efefef;}
+.add_list li a .subject {padding:0 15px; height:42px; line-height:42px; color:#666; font-size:16px;}
+.add_list .btn_more {display:block; margin-top:10px; height:50px; line-height:50px; color:#444; font-size:18px; text-align:center; background:#eee; border:1px solid #999;}
 .process_box {position:fixed; bottom:0; left:0; z-index:100; width:100%; height:15px; background:#ddd;}
 .process_box .bar {position:absolute; bottom:0; left:0; height:15px; background:#c00;}
 .btn_top {display:none; position:fixed; bottom:40px; right:20px; z-index:1000; width:60px; height:60px; line-height:60px; color:#fff; font-size:18px; font-weight:700; text-align:center; background:#222;    border-radius:50em;}
@@ -87,11 +93,12 @@
 .swiper-container li img {display:block; max-width:100%; height:auto;}
 
 .loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em;-webkit-animation: spin 1.5s linear infinite;}
+.hr {margin:40px 0 60px; font-size:0; text-align:center;}
+.hr span {display:inline-block; margin:0 2px; width:6px; height:6px; background:#777; border-radius:50em;}
 @keyframes spin {
     0% {transform:rotate(0deg);}
     100% {transform:rotate(360deg);}
 }
-
 </style>
 </head>
 <body>
@@ -124,6 +131,8 @@
     <h2 class="title">Loader with CSS</h2>
     <div class="loader"></div>
 
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- star rating -->
     <h2 class="title">Star Rating with font awesome</h2>
     <div class="star_rating">
@@ -134,6 +143,8 @@
         <span class="fa fa-star"></span>
     </div>
 
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- toggle switch -->
     <h2 class="title">on/off switch with CSS</h2>
     <div class="toggle_box">
@@ -142,6 +153,8 @@
             <label for="check"></label>
         </div>
     </div>
+
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- custom scroll -->
     <h2 class="title">Custom scroll with mCustomScrollbar.js</h2>
@@ -156,11 +169,15 @@
         </p>
     </div>
 
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- count box -->
     <h2 class="title">Count up number with countUp.js</h2>
     <div class="count_box">
         <p id="num01"></p>
     </div>
+
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- treeview -->
     <h2 class="title">Tree menu with jquery.treeview.js</h2>
@@ -188,6 +205,8 @@
         </ul>
     </div>
 
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- tooltip -->
     <h2 class="title">tooltips width CSS</h2>
     <div class="tooltips">
@@ -205,13 +224,7 @@
         </div>
     </div>
 
-<style>
-.add_list li {border:1px solid #ddd; border-top:0;}
-.add_list li:first-child {border-top:1px solid #ddd;}
-.add_list li a {display:block;}
-.add_list li a .subject {padding:0 15px; height:42px; line-height:42px; color:#666; font-size:16px;}
-.add_list .btn_more {display:block; margin-top:10px; height:50px; line-height:50px; color:#444; font-size:18px; text-align:center; background:#eee; border:1px solid #999;}
-</style>
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- load list -->
     <h2 class="title">Load List with ajax</h2>
@@ -225,6 +238,8 @@
         </ul>
         <a href="javascript:;" class="btn_more">more +</a>
     </div>
+
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- swipe contents -->
     <h2 class="title">Swipe contents with swiper.js</h2>
@@ -277,9 +292,11 @@
        <div class="swiper-button-prev"></div>
     </div>
 
-<!-- 스크롤 데이터 로드 : 더이상 가져올 데이터가 없을 경우 아래 div 태그 숨김 -->
-    <div style="height:100px;"></div>
+    <div class="hr"><span></span><span></span><span></span></div>
 
+<!-- 스크롤 데이터 로드 : 더이상 가져올 데이터가 없을 경우 아래 div 태그 숨김
+    <div style="height:100px;"></div>
+-->
 <!-- page bar process guide -->
     <div class="process_box">
         <div class="bar"></div>
@@ -287,6 +304,8 @@
 <!-- btn top -->
     <a href="javascript:;" id="btn_top" class="btn_top">TOP</a>
 </div>
+
+<div class="hr"><span></span><span></span><span></span></div>
 
 <!-- masony (category) -->
     <h2 class="title">grid layout with masony.js</h2>
@@ -456,10 +475,10 @@ $(document).ready(function(){
             url: 'ajax_datas.html',
             success: function(html){
                 if(html){
-                    console.log(html);
-                    var $moreItems = $(html).find('.add_list').children('ul').children('li');
+                    var $moreItems = $(html).filter('.add').children('ul').children('li');
+                    console.log($moreItems)
                     var $itemBox = $('.add_list ul');
-                    $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
+                    $moreItems.css({'position':'relative', 'top':'20px','opacity':'0'});
                     $($moreItems).animate({'top':'0','opacity':'1'}, 300).appendTo($itemBox);
                     //$('.loading_img').fadeOut();
                 }else{
