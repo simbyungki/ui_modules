@@ -460,7 +460,7 @@ $(document).ready(function(){
                     var $moreItems = $(html).find('.add_list').children('ul').children('li');
                     var $itemBox = $('.add_list ul');
                     $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
-                    $($moreItems).animate({'top':'0','opacity':'1'}, 300, 'easeOutCubic').appendTo($itemBox);
+                    $($moreItems).animate({'top':'0','opacity':'1'}, 300).appendTo($itemBox);
                     //$('.loading_img').fadeOut();
                 }else{
                     return false;
