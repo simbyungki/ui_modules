@@ -457,8 +457,7 @@ $(document).ready(function(){
             success: function(html){
                 if(html){
                     console.log(html);
-                    console.log($(html).filter('.add_list ul').children('li'));
-                    var $moreItems = $(html).filter('.add_list ul').children('li');
+                    var $moreItems = $(html).filter('.add_list').children('ul').children('li');
                     console.log($moreItems);
                     var $itemBox = $('.add_list ul');
                     $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
