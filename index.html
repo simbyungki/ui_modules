@@ -452,11 +452,11 @@ $(document).ready(function(){
     });
     */
     $('.add_list .btn_more').on('click', function(){
-        alert();
         $.ajax({
             url: 'ajax_datas.html',
             success: function(html){
                 if(html){
+                    alert();
                     var $moreItems = $(html).filter('.add_list').children('li');
                     var $itemBox = $('.add_list ul');
                     $moreItems.css({'position':'relative', 'top':'30px','opacity':'0'});
