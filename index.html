@@ -48,6 +48,14 @@
 .menu .bar.on {background:linear-gradient(#666, #888); transition:all .5s;}
 .contents {margin:0 auto; padding:110px 0 40px; min-height:2000px; width:1000px;}
 .title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
+.mouse_position_event {position:relative; height:400px; border:2px solid #333;}
+.mouse_position_event .box {position:absolute; top:50%; margin-top:-100px; width:200px; height:200px; text-align:center; background:red;}
+.mouse_position_event .box span {position:absolute; top:50%; transform:translateX(-50%); color:#fff; font-size:20px;}
+.mouse_position_event .box.b1 {left:10%;}
+.mouse_position_event .box.b2 {left:50%; margin-left:-100px;}
+.mouse_position_event .box.b3 {right:10%;}
+.mouse_position_event .bg {position:absolute; bottom:0; left:0; z-index:-1; width:100%; height:0; background:#d1d1d1;}
+.mouse_position_event .console {position:absolute; right:15px; bottom:15px;}
 .star_rating span {font-size:20px;}
 .star_rating span.checked {color:red;}
 .toggle_box {position:relative; text-align:right;}
@@ -142,6 +150,16 @@
     </nav>
 </header>
 <div class="contents">
+<!-- mouse event -->
+    <h2 class="title">Mouse position event</h2>
+    <div class="mouse_position_event">
+        <div class="box b1"><span>BOX</span></div>
+        <div class="box b2"><span>BOX</span></div>
+        <div class="box b3"><span>BOX</span></div>
+        <p class="console">X : <span class="x">0</span>, Y : <span class="y">0</span></p>
+        <div class="bg"></div>
+    </div>
+
 <!-- loader -->
     <h2 class="title">Loader with CSS</h2>
     <div class="loader"></div>
@@ -372,6 +390,29 @@
         <div class="item">9</div>
         <div class="item">10</div>
     </div>
+
+<!-- page loading -->
+<style>
+.page_loading {position:fixed; top:0; left:0;  z-index:1000; width:100%; height:100%; background:rgba(0,0,0,0.92);}
+.page_loading .txt {position:fixed; top:50%; left:0; width:100%; color:#fff; font-size:20px; text-align:center; transform:translateY(-50%);}
+.page_loading .bar {position:fixed; top:50%; left:50%; margin:-25px 0 0-45px; width:90px; height:10px; background:#fff; overflow:hidden;}
+.page_loading .bar span {display:block; width:0%; height:10px; background:red; -webkit-animation:loading 3s linear infinite; animation:loading 2s linear infinite;}
+
+@keyframes loading {
+    0% {
+        width:0%;
+    } 50% {
+        width:50%;
+    } 100% {
+        width:100%;
+    }
+}
+
+</style>
+<div class="page_loading">
+    <p class="txt">LOADING</p>
+    <div class="bar"><span></span></div>
+</div>
 <script>
 $(document).ready(function(){
     //nav (animate bar)
@@ -403,6 +444,18 @@ $(document).ready(function(){
     $('.cs_scrollbox').mCustomScrollbar({
        axis : 'y',
        theme: 'dark'
+    });
+
+    //mouse event
+    $('.mouse_position_event').on('mousemove', function(e){
+        var x = e.clientX - 183;
+        var y = e.clientY - 211;
+        $('.mouse_position_event .console .x').text(x);
+        $('.mouse_position_event .console .y').text(y);
+        $('.mouse_position_event .b1').css({'transform': 'rotateX('+ (x) +'deg)'});
+        $('.mouse_position_event .b2').css({'transform': 'rotate('+ (x) +'deg)'});
+        $('.mouse_position_event .b3').css({'transform': 'rotateY('+ (x) +'deg)'});
+        $('.mouse_position_event .bg').css({'height': percent(y,400)+ '%'});
     });
 
     //file tree
@@ -560,6 +613,13 @@ $(window).scroll(function(){
     }else{
         $('#btn_top').fadeOut(300);
     }
+});
+//get percent
+function percent(v, t){
+    return v/t*100;
+}
+$(window).load(function(){
+    $('.page_loading').fadeOut('fast');
 });
 </script>
 
