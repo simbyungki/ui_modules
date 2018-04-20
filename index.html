@@ -150,6 +150,32 @@
     </nav>
 </header>
 <div class="contents">
+<style>
+
+.working {margin:150px 0; color:#444; font-size:20px; font-weight:700; text-align:center;}
+
+.mask_cont {position:relative; margin:0 auto; width:300px; min-height:150px;}
+.mask_cont:after {display:block; position:absolute; top:20%; font-size:14px; content:"mouse hover"; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont:hover:after {display:none; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont div {position:absolute; overflow:hidden; right:0; top:0; border-left:6px solid #fff; padding-left:0; width:0; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont:hover div {border-left:6px solid red; width:300px; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont p {float:right; padding-left:15px; width:285px; line-height:22px; color:#444; font-size:14px;}
+</style>
+
+    <p class="working">working...</p>
+
+<!-- mouse hover mask event -->
+    <h2 class="title">Mouse hover mask contents</h2>
+    <div class="mask_cont">
+        <div>
+            <p>
+                The element(s) you want to add scrollbar(s) should have the typical CSS properties of an overflowed block which are a height (or max-height) value
+            </p>
+        </div>
+    </div>
+
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- mouse event -->
     <h2 class="title">Mouse position event</h2>
     <div class="mouse_position_event">
@@ -308,15 +334,15 @@
     <div class="swiper_type03 swiper-container">
        <ul class="swiper-wrapper">
             <li class="swiper-slide">
-                <img src="http://lorempixel.com/1600/1200/nature/1/" alt="" class="swiper-lazy">
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="" class="swiper-lazy">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </li>
             <li class="swiper-slide">
-                <img src="http://lorempixel.com/1600/1200/nature/2/" alt="" class="swiper-lazy">
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bc/bg_subMainbcWrap_0713.jpg" alt="" class="swiper-lazy">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </li>
             <li class="swiper-slide">
-                <img src="http://lorempixel.com/1600/1200/nature/3/" alt="" class="swiper-lazy">
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="" class="swiper-lazy">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </li>
        </ul>
