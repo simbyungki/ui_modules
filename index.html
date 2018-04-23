@@ -48,6 +48,12 @@
 .menu .bar.on {background:linear-gradient(#666, #888); transition:all .5s;}
 .contents {margin:0 auto; padding:110px 0 40px; min-height:2000px; width:1000px;}
 .title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
+.mask_cont {position:relative; margin:0 auto; width:300px; min-height:150px;}
+.mask_cont:after {display:block; position:absolute; top:0; width:300px; height:150px; line-height:150px; content:"mouse over"; color:#fff; font-size:16px; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s; background:#000;}
+.mask_cont:hover:after {top:110px; height:40px; background:#fff; -webkit-transition:all 0.4s; transition:all 0.4s;}
+.mask_cont div {position:absolute; overflow:hidden; right:0; top:0; border-left:6px solid #fff; padding-left:0; width:0; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont:hover div {border-left:6px solid red; width:300px; -webkit-transition:all 0.7s; transition:all 0.7s;}
+.mask_cont p {float:right; padding-left:15px; width:285px; line-height:22px; color:#444; font-size:14px;}
 .mouse_position_event {position:relative; height:400px; border:2px solid #333;}
 .mouse_position_event .box {position:absolute; top:50%; margin-top:-100px; width:200px; height:200px; text-align:center; background:red;}
 .mouse_position_event .box span {position:absolute; top:50%; transform:translateX(-50%); color:#fff; font-size:20px;}
@@ -114,13 +120,35 @@
 .swiper-container li {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
 .swiper-container.swiper_type03 li {height:auto;}
 .swiper-container li img {display:block; max-width:100%; height:auto;}
-
 .loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em;-webkit-animation: spin 1.5s linear infinite;}
 .hr {margin:40px 0 60px; font-size:0; text-align:center;}
 .hr span {display:inline-block; margin:0 2px; width:6px; height:6px; background:#777; border-radius:50em;}
 @keyframes spin {
     0% {transform:rotate(0deg);}
     100% {transform:rotate(360deg);}
+}
+.page_loading {position:fixed; top:0; left:0;  z-index:1000; width:100%; height:100%; background:rgba(0,0,0,0.92);}
+.page_loading .txt {position:fixed; top:50%; left:0; width:100%; color:#fff; font-size:20px; text-align:center; transform:translateY(-50%);}
+.page_loading .bar {position:fixed; top:50%; left:50%; margin:-25px 0 0-45px; width:90px; height:10px; background:#fff; overflow:hidden;}
+.page_loading .bar span {display:block; width:0%; height:10px; background:red; -webkit-animation:loading 3s linear infinite; animation:loading 2s linear infinite;}
+@keyframes loading {
+    0% {
+        width:0%;
+    } 50% {
+        width:50%;
+    } 100% {
+        width:100%;
+    }
+}
+.working {margin:150px 0; color:#444; font-size:20px; font-weight:700; text-align:center; -webkit-animation:working 1s linear infinite alternate; animation:working 1s linear infinite alternate;}
+@keyframes working {
+    0% {
+        opacity:0;
+    } 50% {
+        opacity:.5;
+    } 100% {
+        opacity:1;
+    }
 }
 </style>
 </head>
@@ -150,20 +178,7 @@
     </nav>
 </header>
 <div class="contents">
-<style>
-
-.working {margin:150px 0; color:#444; font-size:20px; font-weight:700; text-align:center;}
-
-.mask_cont {position:relative; margin:0 auto; width:300px; min-height:150px;}
-.mask_cont:after {display:block; position:absolute; top:20%; font-size:14px; content:"mouse hover"; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s;}
-.mask_cont:hover:after {display:none; -webkit-transition:all 0.7s; transition:all 0.7s;}
-.mask_cont div {position:absolute; overflow:hidden; right:0; top:0; border-left:6px solid #fff; padding-left:0; width:0; -webkit-transition:all 0.7s; transition:all 0.7s;}
-.mask_cont:hover div {border-left:6px solid red; width:300px; -webkit-transition:all 0.7s; transition:all 0.7s;}
-.mask_cont p {float:right; padding-left:15px; width:285px; line-height:22px; color:#444; font-size:14px;}
-</style>
-
     <p class="working">working...</p>
-
 <!-- mouse hover mask event -->
     <h2 class="title">Mouse hover mask contents</h2>
     <div class="mask_cont">
@@ -418,23 +433,6 @@
     </div>
 
 <!-- page loading -->
-<style>
-.page_loading {position:fixed; top:0; left:0;  z-index:1000; width:100%; height:100%; background:rgba(0,0,0,0.92);}
-.page_loading .txt {position:fixed; top:50%; left:0; width:100%; color:#fff; font-size:20px; text-align:center; transform:translateY(-50%);}
-.page_loading .bar {position:fixed; top:50%; left:50%; margin:-25px 0 0-45px; width:90px; height:10px; background:#fff; overflow:hidden;}
-.page_loading .bar span {display:block; width:0%; height:10px; background:red; -webkit-animation:loading 3s linear infinite; animation:loading 2s linear infinite;}
-
-@keyframes loading {
-    0% {
-        width:0%;
-    } 50% {
-        width:50%;
-    } 100% {
-        width:100%;
-    }
-}
-
-</style>
 <div class="page_loading">
     <p class="txt">LOADING</p>
     <div class="bar"><span></span></div>
@@ -474,14 +472,15 @@ $(document).ready(function(){
 
     //mouse event
     $('.mouse_position_event').on('mousemove', function(e){
-        var x = e.clientX - 183;
-        var y = e.clientY - 211;
-        $('.mouse_position_event .console .x').text(x);
-        $('.mouse_position_event .console .y').text(y);
-        $('.mouse_position_event .b1').css({'transform': 'rotateX('+ (x) +'deg)'});
-        $('.mouse_position_event .b2').css({'transform': 'rotate('+ (x) +'deg)'});
-        $('.mouse_position_event .b3').css({'transform': 'rotateY('+ (x) +'deg)'});
-        $('.mouse_position_event .bg').css({'height': percent(y,400)+ '%'});
+        var offset = $(this).offset();
+        var relativeX = (e.pageX - offset.left);
+        var relativeY = (e.pageY - offset.top);
+        $('.mouse_position_event .console .x').text(relativeX);
+        $('.mouse_position_event .console .y').text(relativeY);
+        $('.mouse_position_event .b1').css({'transform': 'rotateX('+ (relativeX) +'deg)'});
+        $('.mouse_position_event .b2').css({'transform': 'rotate('+ (relativeX) +'deg)'});
+        $('.mouse_position_event .b3').css({'transform': 'rotateY('+ (relativeX) +'deg)'});
+        $('.mouse_position_event .bg').css({'height': percent(relativeY,400)+ '%'});
     });
 
     //file tree
