@@ -32,8 +32,9 @@
     <!-- masonry -->
     <script type="text/javascript" src="js/masonry.pkgd.js"></script>
     <!-- swiper.js -->
-    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick_theme.css">
+    <script type="text/javascript" src="js/slick.js"></script>
     <!-- make -->
     <script type="text/javascript" src="js/bk.js"></script>
 <style>
@@ -116,10 +117,7 @@
 .btn_top:visited {color:#fff;}
 .grid {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px);}
 .grid .item {float:left; width:311.33px; margin-bottom:15px; height:100px; line-height:100px; color:#fff; font-size:36px; text-align:center; background:#888; border:2px solid #000; box-sizing:border-box;}
-.swiper-container {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
-.swiper-container li {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
-.swiper-container.swiper_type03 li {height:auto;}
-.swiper-container li img {display:block; max-width:100%; height:auto;}
+
 .loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em;-webkit-animation: spin 1.5s linear infinite;}
 .hr {margin:40px 0 60px; font-size:0; text-align:center;}
 .hr span {display:inline-block; margin:0 2px; width:6px; height:6px; background:#777; border-radius:50em;}
@@ -315,55 +313,64 @@
 
     <div class="hr"><span></span><span></span><span></span></div>
 
+<style>
+.slick_type01,
+.slick_type02,
+.slick_type03 {margin:0 auto; width:1000px;}
+
+.slider {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
+.slider .slick-slide {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
+.slider.slick_type03 .slick-slide {height:auto;}
+.slider .slick-slide img {display:block; max-width:100%; height:auto;}
+.slick-dots li {width:10px; height:10px; border-radius:50em; background:#000; opacity:0.25;}
+.slick-dots li.slick-active {opacity:1;}
+.slick-dots li button {width:10px; height:10px;}
+.slick-dots li button:before {line-height:10px; content:"";}
+.slick-arrow {z-index:100; width:58px; height:59px;}
+.slick-prev {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center;}
+.slick-prev:before {content: "";}
+.slick-next {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center;}
+.slick-next:before {content:"";}
+.slick-prev:hover, .slick-prev:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center; opacity:0.8;}
+.slick-next:hover, .slick-next:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center; opacity:0.8;}
+</style>
 <!-- swipe contents -->
-    <h2 class="title">Swipe contents with swiper.js</h2>
-    <div class="swiper_type01 swiper-container">
-       <ul class="swiper-wrapper">
-            <li class="swiper-slide">1</li>
-            <li class="swiper-slide">2</li>
-            <li class="swiper-slide">3</li>
-            <li class="swiper-slide">4</li>
-            <li class="swiper-slide">5</li>
-            <li class="swiper-slide">6</li>
+    <h2 class="title">Swipe contents with slick.js</h2>
+    <div class="slick_type01 slider">
+       <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
        </ul>
-       <div class="swiper-pagination"></div>
-       <div class="swiper-button-next"></div>
-       <div class="swiper-button-prev"></div>
     </div>
 
-    <div class="swiper_type02 swiper-container">
-       <ul class="swiper-wrapper">
-            <li class="swiper-slide">1</li>
-            <li class="swiper-slide">2</li>
-            <li class="swiper-slide">3</li>
-            <li class="swiper-slide">4</li>
-            <li class="swiper-slide">5</li>
-            <li class="swiper-slide">6</li>
+    <div class="slick_type02 slider">
+       <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
        </ul>
-       <div class="swiper-pagination"></div>
-       <div class="swiper-button-next"></div>
-       <div class="swiper-button-prev"></div>
     </div>
     <a href="javascript:;" class="btn_destory">2번 스와이프 파괴</a>
 
-    <div class="swiper_type03 swiper-container">
-       <ul class="swiper-wrapper">
-            <li class="swiper-slide">
-                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="" class="swiper-lazy">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+    <div class="slick_type03 slider">
+       <ul>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="">
             </li>
-            <li class="swiper-slide">
-                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bc/bg_subMainbcWrap_0713.jpg" alt="" class="swiper-lazy">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bc/bg_subMainbcWrap_0713.jpg" alt="">
             </li>
-            <li class="swiper-slide">
-                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="" class="swiper-lazy">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="">
             </li>
        </ul>
-       <div class="swiper-pagination"></div>
-       <div class="swiper-button-next"></div>
-       <div class="swiper-button-prev"></div>
     </div>
 
     <div class="hr"><span></span><span></span><span></span></div>
@@ -494,58 +501,22 @@ $(document).ready(function(){
         fitWidth: true
     });
 
-    //swiper type01
-    var swiper01 = new Swiper('.swiper_type01', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        //loop: true,
-        pagination: {
-            el: '.swiper_type01 .swiper-pagination',
-            clickable: true,
-            dynamicBullets: true
-        },
-        navigation: {
-            nextEl: '.swiper_type01 .swiper-button-next',
-            prevEl: '.swiper_type01 .swiper-button-prev',
-        },
+    //slick type01
+    $('.slick_type01 ul').slick({
+        dots: true,
+        infinite: false,
+
+
     });
+
     //swiper type02
-    var swiper02 = new Swiper('.swiper_type02', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        //loop: true,
-        pagination: {
-            el: '.swiper_type02 .swiper-pagination',
-            type: 'fraction'
-        },
-        navigation: {
-            nextEl: '.swiper_type02 .swiper-button-next',
-            prevEl: '.swiper_type02 .swiper-button-prev',
-        },
-    });
+    $('.slick_type02 ul').slick({});
 
     //swiper type02 destroy
-    $('.btn_destory').on('click', function(){
-        swiper02.destroy(false, false);   //(deleteInstance, cleanStyles)
-    });
+
 
     //swiper type03
-    var swiper03 = new Swiper('.swiper_type03', {
-        // Enable lazy loading
-        lazy: true,
-        slidesPerView: 1,
-        spaceBetween: 30,
-        autoHeight: true,
-        //loop: true,
-        pagination: {
-            el: '.swiper_type03 .swiper-pagination',
-            type: 'fraction'
-        },
-        navigation: {
-            nextEl: '.swiper_type03 .swiper-button-next',
-            prevEl: '.swiper_type03 .swiper-button-prev',
-        },
-    });
+    $('.slick_type03 ul').slick({});
 
     //count up (http://inorganik.github.io/countUp.js/)
     var countUp = new CountUp('num01', 0, 4149, 0, 3, { //start num, end num, demical, duration
