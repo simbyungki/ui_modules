@@ -50,8 +50,8 @@
 .contents {margin:0 auto; padding:110px 0 40px; min-height:2000px; width:1000px;}
 .title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
 .mask_cont {position:relative; margin:0 auto; width:300px; min-height:150px;}
-.mask_cont:after {display:block; position:absolute; top:0; width:300px; height:150px; line-height:150px; content:"mouse over"; color:#fff; font-size:16px; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s; background:#000;}
-.mask_cont:hover:after {top:110px; height:40px; background:#fff; -webkit-transition:all 0.4s; transition:all 0.4s;}
+.mask_cont:after {display:block; position:absolute; top:0; width:300px; height:150px; line-height:150px; content:"mouse over"; color:#000; font-size:16px; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s; background:#fff; opacity:1;}
+.mask_cont:hover:after {height:40px; color:#fff; -webkit-transition:all 0.2s; transition:all 0.2s; opacity:0;}
 .mask_cont div {position:absolute; overflow:hidden; right:0; top:0; border-left:6px solid #fff; padding-left:0; width:0; -webkit-transition:all 0.7s; transition:all 0.7s;}
 .mask_cont:hover div {border-left:6px solid red; width:300px; -webkit-transition:all 0.7s; transition:all 0.7s;}
 .mask_cont p {float:right; padding-left:15px; width:285px; line-height:22px; color:#444; font-size:14px;}
