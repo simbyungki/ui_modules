@@ -62,18 +62,35 @@ body {background:#000;}
 #header .btn:hover {background:#fff; border-color:#0e0e0e; transition:all .3s;}
 .gnb-on #header .btn .word,
 #header .btn:hover .word {color:#000; transition:all .3s;}
+.gnb-on #header .btn:hover {background:#000; border:5px solid #fff;}
+.gnb-on #header .btn:hover .word {color:#fff;}
 .outline {position:fixed; top:0; left:0; width:100%; height:100%; box-sizing:border-box; border:0 solid #fff; transition:border-width .4s;}
 .outline.on {border-width:12px; transition:border-width .4s;}
-.main-nav {position:fixed; top:0; left:0; width:100%; height:100%; border:0 solid yellow; transition:all .4s; box-sizing:border-box;}
+.main-nav {position:fixed; top:0; left:0; width:100%; height:100%; border:0 solid #c28000; transition:all .4s; box-sizing:border-box; opacity:.9; filter:alpha(opacity=90)}
 .main-nav.on {border-width:50vh 50vw; transition:border-width .4s;}
 .main-nav .list {position:absolute; top:50%; left:50%; width:320px; transform:translate(-50%, -50%);}
 .main-nav .list li {display:none; margin:20px 0; height:42px; line-height:42px; text-align:center;}
 .main-nav .list li a {color:#fff; font-size:32px; font-weight:bold;}
+
+.video-back{background:#000; position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1;}
+.video-back .inner,
+.video-back iframe {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;}
+
+@media screen and (max-width: 480px) {
+    #header .btn {top:20px; right:20px;}
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .video-back .inner {height:300%; top:-100%;}
+}
+@media (max-aspect-ratio: 16/9) {
+    .video-back .inner {width:300%; left:-100%;}
+}
 </style>
 
 <header id="header">
     <div class="outline"></div>
-    <a href="javascript:;" class="btn">
+    <a href="javascript:;" class="btn off">
         <span class="word">M</span>
         <span class="word">E</span>
         <span class="word">N</span>
@@ -88,11 +105,13 @@ body {background:#000;}
             <li><a href="javascript:;">이벤트 참여</a></li>
         </ul>
     </nav>
-
 </header>
 
-
-<div class="hr"><span></span><span></span><span></span></div>
+<div class="video-back">
+    <div class="inner">
+        <iframe id="bg" src="https://www.youtube.com/embed/ns7Z1fUI0xk?autoplay=1&version=3&enablejsapi=1&playerapiid=ytplayer" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
 
 
 <!-- page loading -->
@@ -101,6 +120,30 @@ body {background:#000;}
     <div class="bar"><span></span></div>
 </div>
 <script>
+//youtube player control
+function youtube_play_api(){
+    "use strict";
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    var player;
+    setTimeout(function(){
+        player = new YT.Player('bg', {});
+    }, 1000);
+    $(".play").click(function(){
+        if(player){
+            var fn = function(){player.playVideo();}
+            setTimeout(fn, 1000);
+        }
+    });
+    $(".stop").click(function(){
+         player.pauseVideo();
+    }); 
+}
+
+
 $('#header .btn').hover(function(){
     $('.outline').toggleClass('on');
 });
@@ -108,10 +151,12 @@ $('#header .btn').on('click', function(){
     var $body = $('body');
     var $nav = $('.main-nav');
     if($nav.hasClass('on')){
-        $body.removeClass('gnb-on');
-        $nav.removeClass('on');
+        $(this).addClass('off').removeClass('on');
         showMenuList('close');
+        $body.delay(1000).removeClass('gnb-on');
+        $nav.delay(1000).removeClass('on');
     }else{
+        $(this).addClass('on').removeClass('off');
         $body.addClass('gnb-on');
         $nav.addClass('on');  
         showMenuList('open');
@@ -119,26 +164,33 @@ $('#header .btn').on('click', function(){
 });
 
 function showMenuList(status){
+    var i = 0;
     var idx = $('.main-nav .list li').length;
     var $menuBtnWord = $('#header .btn .word');
     if(status == 'open'){
-        for(var i = 0; idx > i; i++){
-            $('.main-nav .list li').delay(i*100).eq(i).fadeIn('slow');
-        }
+        $('.main-nav .list').show();
+        setInterval(function(){
+            if(idx > i){
+                $('.main-nav .list li').eq(i).fadeIn();       
+            }
+            ++i;
+        }, 300);
         $menuBtnWord.eq(0).text('H');
         $menuBtnWord.eq(1).text('I');
         $menuBtnWord.eq(2).text('D');
         $menuBtnWord.eq(3).text('E');
     }else{
-        for(var i = idx; i >= 0; i--){
-            $('.main-nav .list li').delay(i*100).eq(i).fadeOut('slow');
-        }
+        $('.main-nav .list').fadeOut();
+        $('.main-nav .list li').hide();
         $menuBtnWord.eq(0).text('M');
         $menuBtnWord.eq(1).text('E');
         $menuBtnWord.eq(2).text('N');
         $menuBtnWord.eq(3).text('U');
     }
 }
+$(window).load(function(){
+    youtube_play_api();
+});
 </script>
 <script>
 $(window).load(function(){
