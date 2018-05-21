@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-    <title>UI Modules</title>
+    <title>Micro</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="referrer" content="always">
@@ -66,16 +66,22 @@ body {background:#000;}
 .gnb-on #header .btn:hover .word {color:#fff;}
 .outline {position:fixed; top:0; left:0; width:100%; height:100%; box-sizing:border-box; border:0 solid #fff; transition:border-width .4s;}
 .outline.on {border-width:12px; transition:border-width .4s;}
-.main-nav {position:fixed; top:0; left:0; width:100%; height:100%; border:0 solid #c28000; transition:all .4s; box-sizing:border-box; opacity:.9; filter:alpha(opacity=90)}
+.main-nav {position:fixed; top:0; left:0; z-index:1; width:100%; height:100%; border:0 solid #c28000; transition:all .4s; box-sizing:border-box; opacity:.9; filter:alpha(opacity=90)}
 .main-nav.on {border-width:50vh 50vw; transition:border-width .4s;}
 .main-nav .list {position:absolute; top:50%; left:50%; width:320px; transform:translate(-50%, -50%);}
-.main-nav .list li {display:none; margin:20px 0; height:42px; line-height:42px; text-align:center;}
-.main-nav .list li a {color:#fff; font-size:32px; font-weight:bold;}
+.main-nav .list li {display:none; margin:20px 0; height:42px; line-height:42px; text-align:center; background:none; overflow:hidden;}
+.main-nav .list li a {display:block; position:relative; top:0; color:#fff; font-size:32px; font-weight:bold; transition:all .2s;}
+.main-nav .list li a:after {display:block; color:#3d2800; background:rgba(255,255,255,.3);}
+.main-nav .list li:nth-child(1) a:after {content:"휴대폰구매";}
+.main-nav .list li:nth-child(2) a:after {content:"홈 서비스 가입";}
+.main-nav .list li:nth-child(3) a:after {content:"IoT 서비스 가입";}
+.main-nav .list li:nth-child(4) a:after {content:"결합 상품 가입";}
+.main-nav .list li:nth-child(5) a:after {content:"이벤트 참여";}
+.main-nav .list li:hover a {top:-42px; transition:all .2s;}
 
 .video-back{background:#000; position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1;}
 .video-back .inner,
 .video-back iframe {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;}
-
 @media screen and (max-width: 480px) {
     #header .btn {top:20px; right:20px;}
 }
@@ -86,6 +92,9 @@ body {background:#000;}
 @media (max-aspect-ratio: 16/9) {
     .video-back .inner {width:300%; left:-100%;}
 }
+.ci {position:fixed; top:30px; left:30px; color:#fff; font-size:30px; font-weight:bold;}
+.ci sup {color:#fff; font-size:25px; vertical-align:super;}
+.page-title {position:fixed; top:315px; right:50px; color:#fff; font-size:20px; transform:rotate(90deg); transform-origin:right top; -webkit-transform:rotate(90deg); -webkit-transform-origin:right top; -ms-transform:rotate(90deg); -ms-transform-origin:right top;}
 </style>
 
 <header id="header">
@@ -107,9 +116,13 @@ body {background:#000;}
     </nav>
 </header>
 
-<div class="video-back">
-    <div class="inner">
-        <iframe id="bg" src="https://www.youtube.com/embed/ns7Z1fUI0xk?autoplay=1&version=3&enablejsapi=1&playerapiid=ytplayer" frameborder="0" allowfullscreen></iframe>
+<div id="container">
+    <h1 class="ci">U<sup>+</sup>Shop</h1>
+    <h2 class="page-title">IoT 서비스 가입</h2>
+    <div class="video-back">
+        <div class="inner">
+            <iframe id="bg" src="https://www.youtube.com/embed/cFyb2-jCc3A?version=3&autoplay=1&enablejsapi=1&playerapiid=ytplayer&loop=1&playlist=cFyb2-jCc3A" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
+        </div>
     </div>
 </div>
 
@@ -122,9 +135,9 @@ body {background:#000;}
 <script>
 //youtube player control
 function youtube_play_api(){
-    "use strict";
+    'use strict';
     var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
+    tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     
@@ -132,13 +145,13 @@ function youtube_play_api(){
     setTimeout(function(){
         player = new YT.Player('bg', {});
     }, 1000);
-    $(".play").click(function(){
+    $('.play').click(function(){
         if(player){
             var fn = function(){player.playVideo();}
             setTimeout(fn, 1000);
         }
     });
-    $(".stop").click(function(){
+    $('.stop').click(function(){
          player.pauseVideo();
     }); 
 }
