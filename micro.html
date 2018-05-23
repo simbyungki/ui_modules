@@ -17,7 +17,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <!-- font awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- jquery -->
     <script type="text/javascript" src="js/jquery.1.11.1.min.js"></script>
     <!-- swiper.js -->
@@ -82,6 +82,7 @@ body {background:#000;}
 .video-back{background:#000; position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1;}
 .video-back .inner,
 .video-back iframe {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;}
+.video-back .bg-play {position:absolute; top:0; left:-9999px;}
 @media screen and (max-width: 480px) {
     #header .btn {top:20px; right:20px;}
 }
@@ -95,6 +96,7 @@ body {background:#000;}
 .ci {position:fixed; top:30px; left:30px; color:#fff; font-size:30px; font-weight:bold;}
 .ci sup {color:#fff; font-size:25px; vertical-align:super;}
 .page-title {position:fixed; top:315px; right:50px; color:#fff; font-size:20px; transform:rotate(90deg); transform-origin:right top; -webkit-transform:rotate(90deg); -webkit-transform-origin:right top; -ms-transform:rotate(90deg); -ms-transform-origin:right top;}
+
 </style>
 
 <header id="header">
@@ -121,8 +123,10 @@ body {background:#000;}
     <h2 class="page-title">IoT 서비스 가입</h2>
     <div class="video-back">
         <div class="inner">
-            <iframe id="bg" src="https://www.youtube.com/embed/cFyb2-jCc3A?version=3&autoplay=1&enablejsapi=1&playerapiid=ytplayer&loop=1&playlist=cFyb2-jCc3A" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
+            <iframe id="bg" src="https://www.youtube.com/embed/cFyb2-jCc3A?version=3&autoplay=1&enablejsapi=1&playerapiid=ytplayer&loop=1&playlist=cFyb2-jCc3A&rel=0&showinfo=0" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
         </div>
+        <a href="javascript:;" class="bg-play"></a>
+        <a href="javascript:;" class="btn_play"><i class="fas fa-play-circle"></i></a>
     </div>
 </div>
 
@@ -145,7 +149,7 @@ function youtube_play_api(){
     setTimeout(function(){
         player = new YT.Player('bg', {});
     }, 1000);
-    $('.play').click(function(){
+    $('.bg-play').click(function(){
         if(player){
             var fn = function(){player.playVideo();}
             setTimeout(fn, 1000);
@@ -203,6 +207,7 @@ function showMenuList(status){
 }
 $(window).load(function(){
     youtube_play_api();
+    $('.bg-play').trigger('click');
 });
 </script>
 <script>
