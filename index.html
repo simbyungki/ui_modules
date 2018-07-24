@@ -53,6 +53,7 @@
 .menu .bar.on {background:linear-gradient(#666, #888); transition:all .5s;}
 .contents {margin:0 auto; padding:110px 0 40px; min-height:2000px; width:1000px;}
 .title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
+.in_title {margin:25px auto 10px;}
 
 .datepicker {padding:25px 0; text-align:center;}
 .datepicker input {padding:0 10px; width:calc(100% - 28px); height:50px; line-height:50px; font-size:22px; border:4px solid #999;}
@@ -345,7 +346,10 @@ $('#dateRange').dateRangePicker({
 <style>
 .slick_type01,
 .slick_type02,
-.slick_type03 {margin:0 auto; width:1000px;}
+.slick_type03,
+.slick_type04 {margin:0 auto; width:1000px;}
+.slick_type04 .control_pause {margin-right:10px;}
+.slick_type04 .number_pagenate {float:right;}
 .btn_destroy {display:block; margin:0 auto; width:250px; height:40px; line-height:40px; color:#fff; text-align:center; background:#777;}
 .btn_destroy:hover {color:#fff;}
 .slider {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
@@ -402,6 +406,26 @@ $('#dateRange').dateRangePicker({
             </li>
        </ul>
     </div>
+
+    <h3 class="in_title">@Auto slide, Number Pagenation, Play / Pause Button</h3>
+    <div class="slick_type04 slider">
+        <ul>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="">
+            </li>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bc/bg_subMainbcWrap_0713.jpg" alt="">
+            </li>
+            <li>
+                <img src="http://image.uplus.co.kr/images/renewal/images/bz/pc/bv/bg_subMainBV_0713.jpg" alt="">
+            </li>
+        </ul>
+        <div class="clear_fix">
+            <a href="javascript:;" class="control_pause">pause</a>
+            <a href="javascript:;" class="control_play">play</a>
+            <span class="number_pagenate"><em class="curr">1</em> / <em class="total"></em></span>
+        </div>
+    </div>    
 
     <div class="hr"><span></span><span></span><span></span></div>
 
@@ -535,8 +559,6 @@ $(document).ready(function(){
     $('.slick_type01 ul').slick({
         dots: true,
         infinite: false,
-
-
     });
 
     //swiper type02
@@ -557,6 +579,25 @@ $(document).ready(function(){
 
     //swiper type03
     $('.slick_type03 ul').slick({});
+
+    //swiper type04
+    $('.slick_type04 ul').slick({
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+    var totalItemLength = $('.slick_type04 ul li').length - $('.slick_type04 ul li.slick-cloned').length;
+    $('.number_pagenate .total').text(totalItemLength);
+    $('.slick_type04 ul').on('afterChange', function(){
+        var currIdx = $('.slick_type04 ul li.slick-active').index();
+        $('.number_pagenate .curr').text(currIdx);
+    });
+
+    $('.control_pause').on('click', function(){
+        $('.slick_type04 ul').slick('slickPause');
+    });
+    $('.control_play').on('click', function(){
+        $('.slick_type04 ul').slick('slickPlay');
+    });
 
     //count up (http://inorganik.github.io/countUp.js/)
     var countUp = new CountUp('num01', 0, 4149, 0, 3, { //start num, end num, demical, duration
