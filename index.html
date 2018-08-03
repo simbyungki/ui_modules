@@ -58,6 +58,8 @@
 .datepicker {padding:25px 0; text-align:center;}
 .datepicker input {padding:0 10px; width:calc(100% - 28px); height:50px; line-height:50px; font-size:22px; border:4px solid #999;}
 
+.s_symbol li {float:left; margin-right:10px; color:#888; font-size:22px; font-weight:bold;}
+
 .mask_cont {position:relative; margin:0 auto; width:300px; min-height:150px;}
 .mask_cont:after {display:block; position:absolute; top:0; width:300px; height:150px; line-height:150px; content:"mouse over"; color:#000; font-size:16px; text-align:center; -webkit-transition:all 0.7s; transition:all 0.7s; background:#fff; opacity:1;}
 .mask_cont:hover:after {height:40px; color:#fff; -webkit-transition:all 0.2s; transition:all 0.2s; opacity:0;}
@@ -193,6 +195,15 @@
 </header>
 <div class="contents">
     <p class="working">working...</p>
+
+<!-- 특수기호 -->
+    <h2 class="title">Symbols</h2>
+    <ul class="s_symbol clearfix">
+        <li>￦</li>
+        <li>※</li>
+    </ul>
+
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- datepicker range -->
     <h2 class="title">jQuery Date Range Picker</h2>
@@ -356,6 +367,8 @@ $('#dateRange').dateRangePicker({
 .slider .slick-slide {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
 .slider.slick_type03 .slick-slide {height:auto;}
 .slider .slick-slide img {display:block; max-width:100%; height:auto;}
+.slider.slick_type04 li {text-align:center;}
+.slider.slick_type04 li img {margin:0 auto; max-width:99%}
 .slick-dots li {width:10px; height:10px; border-radius:50em; background:#000; opacity:0.25;}
 .slick-dots li.slick-active {opacity:1;}
 .slick-dots li button {width:10px; height:10px;}
@@ -583,7 +596,7 @@ $(document).ready(function(){
     //swiper type04
     $('.slick_type04 ul').slick({
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 2000
     });
     var totalItemLength = $('.slick_type04 ul li').length - $('.slick_type04 ul li.slick-cloned').length;
     $('.number_pagenate .total').text(totalItemLength);
@@ -591,7 +604,6 @@ $(document).ready(function(){
         var currIdx = $('.slick_type04 ul li.slick-active').index();
         $('.number_pagenate .curr').text(currIdx);
     });
-
     $('.control_pause').on('click', function(){
         $('.slick_type04 ul').slick('slickPause');
     });
