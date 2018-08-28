@@ -39,6 +39,8 @@
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.min.css">
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/jquery.daterangepicker.js"></script>
+    <!-- sliphover / https://github.com/wayou/SlipHover/blob/master/demo/target.html -->
+    <script type="text/javascript" src="js/jquery.sliphover.js"></script> 
     <!-- make -->
     <script type="text/javascript" src="js/bk.js"></script> 
 <style>
@@ -55,14 +57,21 @@
 .title {margin:40px auto 20px; padding-bottom:15px; width:1000px; font-size:24px; border-bottom:2px solid #999;}
 .in_title {margin:25px auto 10px;}
 
+.list_box_effect ul {zoom:1;}
+.list_box_effect ul:after {display:block; content:""; clear:both;}
+.list_box_effect li {float:left; margin:0 0 20px 2%; width:23.5%; border:3px solid #999; box-sizing:border-box;}
+.list_box_effect li:first-child,
+.list_box_effect li:nth-child(4n+1) {margin-left:0;}
+.list_box_effect li a {display:block; width:100%; height:100px; line-height:100px; color:#888; font-size:20px; font-weight:bold; text-align:center; }
+.sliphover_summary {color:#fff; font-size:20px;}
 .input_form {margin:0 auto; padding:30px 0; width:400px;}
 .input_form .row {position:relative; margin-top:35px;}
 .input_form .row:first-child {margin-top:20px;}
 .input_form .row input {display:block; padding:0 10px; width:calc(100% - 20px);  height:40px; line-height:40px; font-size:16px; border:1px solid #fff; border-bottom:1px solid #888;}
-.input_form .row input + label {display:block; position:absolute; top:15px; left:10px; font-size:16px; color:#999; font-weight:normal; transition:all .5s;}
+.input_form .row input + label {display:block; position:absolute; top:15px; left:10px; font-size:16px; color:#999; font-weight:normal; transition:all .3s;}
 .input_form .row input:focus {border:1px solid red;}
 .input_form .row input:focus + label,
-.input_form .row input:valid + label {top:-19px; font-size:12px; color:#333; font-weight:bold; transition:all .5s;}
+.input_form .row input:valid + label {top:-19px; font-size:12px; color:#333; font-weight:bold; transition:all .3s;}
 .datepicker {padding:25px 0; text-align:center;}
 .datepicker input {padding:0 10px; width:calc(100% - 28px); height:50px; line-height:50px; font-size:22px; border:4px solid #999;}
 .s_symbol li {float:left; margin-right:10px; color:#888; font-size:22px; font-weight:bold;}
@@ -127,6 +136,31 @@
 .hover_box ul li a:hover .hover {opacity:1; transition:all 0.2s;}
 .hover_box ul li a:hover .hover span em:first-child {transform:rotate(-90deg); transition:all 0.3s;}
 .hover_box ul li a:hover .hover span em:last-child {transform:rotate(0); transition:all 0.3s;}
+.slick_type01,
+.slick_type02,
+.slick_type03,
+.slick_type04 {margin:0 auto; width:1000px;}
+.slick_type04 .control_pause {margin-right:10px;}
+.slick_type04 .number_pagenate {float:right;}
+.btn_destroy {display:block; margin:0 auto; width:250px; height:40px; line-height:40px; color:#fff; text-align:center; background:#777;}
+.btn_destroy:hover {color:#fff;}
+.slider {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
+.slider .slick-slide {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
+.slider.slick_type03 .slick-slide {height:auto;}
+.slider .slick-slide img {display:block; max-width:100%; height:auto;}
+.slider.slick_type04 li {text-align:center;}
+.slider.slick_type04 li img {margin:0 auto; max-width:99%}
+.slick-dots li {width:10px; height:10px; border-radius:50em; background:#000; opacity:0.25;}
+.slick-dots li.slick-active {opacity:1;}
+.slick-dots li button {width:10px; height:10px;}
+.slick-dots li button:before {line-height:10px; content:"";}
+.slick-arrow {z-index:100; width:58px; height:59px;}
+.slick-prev {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center;}
+.slick-prev:before {content: "";}
+.slick-next {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center;}
+.slick-next:before {content:"";}
+.slick-prev:hover, .slick-prev:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center; opacity:0.8;}
+.slick-next:hover, .slick-next:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center; opacity:0.8;}
 .process_box {position:fixed; bottom:0; left:0; z-index:100; width:100%; height:15px; background:#ddd;}
 .process_box .bar {position:absolute; bottom:0; left:0; height:15px; background:#c00;}
 .btn_top {display:none; position:fixed; bottom:40px; right:20px; z-index:1000; width:60px; height:60px; line-height:60px; color:#fff; font-size:18px; font-weight:700; text-align:center; background:#222;    border-radius:50em;}
@@ -135,7 +169,7 @@
 .grid {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px);}
 .grid .item {float:left; width:311.33px; margin-bottom:15px; height:100px; line-height:100px; color:#fff; font-size:36px; text-align:center; background:#888; border:2px solid #000; box-sizing:border-box;}
 
-.loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em;-webkit-animation: spin 1.5s linear infinite;}
+.loader {border:8px solid #f3f3f3; border-top:8px solid red; width:60px; height:60px; border-radius:50em; -webkit-animation: spin 1.5s linear infinite;}
 .hr {margin:40px 0 60px; font-size:0; text-align:center;}
 .hr span {display:inline-block; margin:0 2px; width:6px; height:6px; background:#777; border-radius:50em;}
 @keyframes spin {
@@ -202,6 +236,26 @@
 <div class="contents">
     <p class="working">working...</p>
 
+
+<!-- list box SlipHover -->
+    <h2 class="title">List box effect with SlipHover</h2>
+    <div class="list_box_effect">
+        <ul class="clearfix">
+            <li class="list_box_item" title="<p class='sliphover_summary'>1</p>"><a href="javascript:;">1</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>2</p>"><a href="javascript:;">2</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>3</p>"><a href="javascript:;">3</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>4</p>"><a href="javascript:;">4</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>5</p>"><a href="javascript:;">5</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>6</p>"><a href="javascript:;">6</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>7</p>"><a href="javascript:;">7</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>8</p>"><a href="javascript:;">8</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>9</p>"><a href="javascript:;">9</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>10</p>"><a href="javascript:;">10</a></li>
+            <li class="list_box_item" title="<p class='sliphover_summary'>11</p>"><a href="javascript:;">11</a></li>
+        </ul>
+    </div>
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- input box -->
     <h2 class="title">input box label animation with CSS</h2>
     <div class="input_form">
@@ -214,6 +268,7 @@
             <label for="inputName">이름을 입력해주세요.</label>
         </div>
     </div>
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- 특수기호 -->
     <h2 class="title">Symbols</h2>
@@ -229,14 +284,8 @@
     <div class="datepicker">
         <input type="text" id="dateRange" name="dateRange" placeholder="choice date">
     </div>
-<script>
-$('#dateRange').dateRangePicker({
-    language : 'en',
-    separator : ' - ',
-    autoClose: true,
-    format: 'YYYY.MM.DD',
-});
-</script>
+    <div class="hr"><span></span><span></span><span></span></div>
+
 <!-- mouse hover mask event -->
     <h2 class="title">Mouse hover mask contents</h2>
     <div class="mask_cont">
@@ -258,6 +307,8 @@ $('#dateRange').dateRangePicker({
         <p class="console">X : <span class="x">0</span>, Y : <span class="y">0</span></p>
         <div class="bg"></div>
     </div>
+
+    <div class="hr"><span></span><span></span><span></span></div>
 
 <!-- loader -->
     <h2 class="title">Loader with CSS</h2>
@@ -373,33 +424,6 @@ $('#dateRange').dateRangePicker({
 
     <div class="hr"><span></span><span></span><span></span></div>
 
-<style>
-.slick_type01,
-.slick_type02,
-.slick_type03,
-.slick_type04 {margin:0 auto; width:1000px;}
-.slick_type04 .control_pause {margin-right:10px;}
-.slick_type04 .number_pagenate {float:right;}
-.btn_destroy {display:block; margin:0 auto; width:250px; height:40px; line-height:40px; color:#fff; text-align:center; background:#777;}
-.btn_destroy:hover {color:#fff;}
-.slider {margin:20px auto 0; padding:15px; width:calc(100% - 6px - 30px); border:3px solid #ddd;}
-.slider .slick-slide {height:300px; line-height:300px; color:#444; font-size:50px; text-align:center;}
-.slider.slick_type03 .slick-slide {height:auto;}
-.slider .slick-slide img {display:block; max-width:100%; height:auto;}
-.slider.slick_type04 li {text-align:center;}
-.slider.slick_type04 li img {margin:0 auto; max-width:99%}
-.slick-dots li {width:10px; height:10px; border-radius:50em; background:#000; opacity:0.25;}
-.slick-dots li.slick-active {opacity:1;}
-.slick-dots li button {width:10px; height:10px;}
-.slick-dots li button:before {line-height:10px; content:"";}
-.slick-arrow {z-index:100; width:58px; height:59px;}
-.slick-prev {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center;}
-.slick-prev:before {content: "";}
-.slick-next {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center;}
-.slick-next:before {content:"";}
-.slick-prev:hover, .slick-prev:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_prev.png') no-repeat center; opacity:0.8;}
-.slick-next:hover, .slick-next:focus {background:#000 url('http://image.uplus.co.kr/images/renewal/images/sp/pc/main/m_visual_next.png') no-repeat center; opacity:0.8;}
-</style>
 <!-- swipe contents -->
     <h2 class="title">Swipe contents with slick.js</h2>
     <div class="slick_type01 slider">
@@ -574,6 +598,20 @@ $(document).ready(function(){
         $('.mouse_position_event .b2').css({'transform': 'rotate('+ (relativeX) +'deg)'});
         $('.mouse_position_event .b3').css({'transform': 'rotateY('+ (relativeX) +'deg)'});
         $('.mouse_position_event .bg').css({'height': percent(relativeY,400)+ '%'});
+    });
+
+    //slipHover
+    $('.list_box_effect').sliphover({
+        target:'.list_box_item',
+        backgroundColor:'rgba(0,0,0,.6)'
+    });
+
+    //datepicker range
+    $('#dateRange').dateRangePicker({
+        language : 'en',
+        separator : ' - ',
+        autoClose: true,
+        format: 'YYYY.MM.DD',
     });
 
     //file tree
@@ -751,6 +789,5 @@ $(window).load(function(){
     $('.page_loading').fadeOut('fast');
 });
 </script>
-
 </body>
 </html>
