@@ -1,0 +1,383 @@
+<!doctype html>
+<head>
+    <title>UI Modules</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="referrer" content="always">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache; no-store; no-save">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+
+<style>
+.car-part-summary {margin:20px 0 15px; text-align:center;}
+.car-part-summary span {display:inline-block; margin:0 3px; padding:0 8px 0 32px; line-height:26px; font-size:13px; font-weight:600; background:url(images/car_state/icon_performance.png) no-repeat left;}
+.car-part-summary span.type01 {background-position:0 0;}
+.car-part-summary span.type02 {background-position:0 -30px;}
+.car-part-summary span.type03 {background-position:0 -60px;}
+.car-part-summary span.type04 {background-position:0 -90px;}
+.car-part-summary span.type05 {background-position:0 -120px;}
+.car-part-summary span.type06 {background-position:0 -150px;}
+.car-part {position:relative; margin:0 auto; width:1000px;}
+.car-part > img {position:relative; left:4px;}
+.car-part .zone {position:absolute; left:0; top:0; z-index:10; width:30px; height:30px; border-radius:50em; background:rgba(0,0,0,.1); cursor:pointer;}
+.car-part .zone:after {display:block; content:""; position:absolute; left:0; top:0; width:30px; height:30px; background:rgba(0,0,0,0); border-radius:50em; animation:bubbleMotion alternate-reverse .5s infinite;}
+.car-part .zone .bedge {position:absolute; left:2px; top:-8px; width:26px; height:26px; background:url(images/car_state/icon_performance.png) no-repeat; background-position:-9999px -9999px;}
+.car-part .zone .bedge:nth-child(2) {top:12px;}
+.car-part .zone .bedge:after {display:block; content:""; position:absolute; left:0; top:0; width:30px; height:30px; background:rgba(255,255,255,.1); border-radius:50em; animation:bubbleMotion alternate-reverse .5s infinite;}
+.car-part .zone .bedge.type01 {background-position:0 0;}
+.car-part .zone .bedge.type02 {background-position:0 -30px;}
+.car-part .zone .bedge.type03 {background-position:0 -60px;}
+.car-part .zone .bedge.type04 {background-position:0 -90px;}
+.car-part .zone .bedge.type05 {background-position:0 -120px;}
+.car-part .zone .bedge.type06 {background-position:0 -150px;}
+.car-part .zone.z01 {left:346px; top:20px;}
+.car-part .zone.z02 {left:348px; top:59px;}
+.car-part .zone.z03 {left:278px; top:84px;}
+.car-part .zone.z04 {left:84px; top:77px;}
+.car-part .zone.z05 {left:65px; top:157px;}
+.car-part .zone.z06 {left:35px; top:122px;}
+.car-part .zone.z07 {left:108px; top:182px;}
+.car-part .zone.z08 {left:347px; top:121px;}
+.car-part .zone.z09 {left:48px; top:284px;}
+.car-part .zone.z10 {left:98px; top:266px;}
+.car-part .zone.z11 {left:235px; top:244px;}
+.car-part .zone.z12 {left:334px; top:228px;}
+.car-part .zone.z13 {left:104px; top:374px;}
+.car-part .zone.z14 {left:349px; top:329px;}
+.car-part .zone.z15 {left:62px; top:464px;}
+.car-part .zone.z16 {left:31px; top:429px;}
+.car-part .zone.z17 {left:346px; top:479px;}
+.car-part .zone.z18 {left:347px; top:540px;}
+.car-part .zone.z19 {left:267px; top:562px;}
+.car-part .zone.z20 {left:350px; top:603px;}
+.car-part .zone.z21 {left:418px; top:83px;}
+.car-part .zone.z22 {left:872px; top:82px;}
+.car-part .zone.z23 {left:849px; top:186px;}
+.car-part .zone.z24 {left:901px; top:156px;}
+.car-part .zone.z25 {left:934px; top:118px;}
+.car-part .zone.z26 {left:456px; top:245px;}
+.car-part .zone.z27 {left:863px; top:263px;}
+.car-part .zone.z28 {left:922px; top:291px;}
+.car-part .zone.z29 {left:867px; top:366px;}
+.car-part .zone.z30 {left:901px; top:463px;}
+.car-part .zone.z31 {left:930px; top:421px;}
+.car-part .zone.z41 {left:163px; top:244px;}
+.car-part .zone.z42 {left:155px; top:333px;}
+.car-part .zone.z43 {left:161px; top:449px;}
+.car-part .zone.z44 {left:348px; top:387px;}
+.car-part .zone.z45 {left:114px; top:505px;}
+.car-part .zone.z46 {left:801px; top:262px;}
+.car-part .zone.z47 {left:820px; top:339px;}
+.car-part .zone.z48 {left:809px; top:453px;}
+.car-part .zone.z49 {left:856px; top:507px;}
+.car-part .zone.z50 {left:622px; top:67px;}
+.car-part .zone.z51 {left:618px; top:96px;}
+.car-part .zone.z52 {left:545px; top:151px;}
+.car-part .zone.z53 {left:548px; top:205px;}
+.car-part .zone.z54 {left:578px; top:164px;}
+.car-part .zone.z55 {left:651px; top:163px;}
+.car-part .zone.z56 {left:688px; top:151px;}
+.car-part .zone.z57 {left:687px; top:204px;}
+.car-part .zone.z58 {left:616px; top:236px;}
+.car-part .zone.z59 {left:617px; top:274px;}
+.car-part .zone.z60 {left:620px; top:352px;}
+.car-part .zone.z61 {left:622px; top:447px;}
+.car-part .zone.z62 {left:551px; top:481px;}
+.car-part .zone.z63 {left:582px; top:490px;}
+.car-part .zone.z64 {left:619px; top:492px;}
+.car-part .zone.z65 {left:656px; top:492px;}
+.car-part .zone.z66 {left:690px; top:480px;}
+.car-part .zone.z67 {left:618px; top:541px;}
+.car-part .popup-menu {display:none; position:absolute; left:0; top:0; z-index:200; padding:10px 15px 5px; min-width:186px; border:2px solid #000; background:#fff;}
+.car-part .popup-menu .part-name {margin-bottom:8px; padding-bottom:4px; font-size:14px; font-weight:600; border-bottom:1px solid #e1e1e1;}
+.car-part .popup-menu .part-name .number {color:#000;}
+.car-part .popup-menu .title {display:block; margin-bottom:10px; font-size:14px;}
+.car-part .popup-menu ul {border-bottom:1px solid #ddd;}
+.car-part .popup-menu li {position:relative; cursor:pointer; border-top:1px solid #ddd;}
+.car-part .popup-menu li:hover {background:#f4f4f4;}
+.car-part .popup-menu li:after {display:block; content:""; position:absolute; left:18px; top:4px; width:26px; height:26px; background:url(images/car_state/icon_performance.png) no-repeat;}
+.car-part .popup-menu li.none:before {background:none;}
+.car-part .popup-menu li label {display:block; position:relative;}
+.car-part .popup-menu li input[type="checkbox"] {position:absolute; left:0; top:50%; margin-top:-7px;}
+.car-part .popup-menu li input[type="checkbox"]:checked + span {background-color:#f1f1f1;}
+.car-part .popup-menu li span {display:block; padding:10px 18px 10px 52px; font-size:13px;}
+.car-part .popup-menu li.type01:after {background-position:0 0;}
+.car-part .popup-menu li.type02:after {background-position:0 -30px;}
+.car-part .popup-menu li.type03:after {background-position:0 -60px;}
+.car-part .popup-menu li.type04:after {background-position:0 -90px;}
+.car-part .popup-menu li.type05:after {background-position:0 -120px;}
+.car-part .popup-menu li.type06:after {background-position:0 -150px;}
+.car-part .popup-menu .btn-close {display:inline-block; position:absolute; right:10px; top:40px; font-size:12px; font-weight:600; text-decoration:underline; border:0; background:none;}
+.car-part .popup-menu .btn-close:hover {color:#000;}
+.car-part .popup-menu .btn-complete {display:block; margin:10px 0; width:100%; height:34px; line-height:34px; color:#fff; font-size:13px; border:0; background:#1A2475;}
+@keyframes bubbleMotion {
+	0% {transform:scale(0.9);}
+	100% {transform:scale(1);}
+}
+
+.newCarImageList {zoom:1;}
+.newCarImageList:after {display:block; content:""; clear:both;}
+.newCarImageList li {float:left; margin:2px;}
+.newCarImageList li img {margin-left:0 !important;}
+</style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="car-part-summary">
+            <span class="type01">교환</span>
+            <span class="type02">판금 또는 용접</span>
+            <span class="type03">흠집</span>
+            <span class="type04">요철</span>
+            <span class="type05">부식</span>
+            <span class="type06">손상</span>
+        </div>
+        <div class="car-part">
+            <img src="images/car_state/part20191113.png" width="100%" id="carImg" class="carImg">
+            <!-- 영역 -->
+            <ul class="zone-list">
+                <li class="zone z01"></li>
+                <li class="zone z02"></li>
+                <li class="zone z03"></li>
+                <li class="zone z04"></li>
+                <li class="zone z05"></li>
+                <li class="zone z06"></li>
+                <li class="zone z07"></li>
+                <li class="zone z08"></li>
+                <li class="zone z09"></li>
+                <li class="zone z10"></li>
+                <li class="zone z11"></li>
+                <li class="zone z12"></li>
+                <li class="zone z13"></li>
+                <li class="zone z14"></li>
+                <li class="zone z15"></li>
+                <li class="zone z16"></li>
+                <li class="zone z17"></li>
+                <li class="zone z18"></li>
+                <li class="zone z19"></li>
+                <li class="zone z20"></li>
+                <li class="zone z21"></li>
+                <li class="zone z22"></li>
+                <li class="zone z23"></li>
+                <li class="zone z24"></li>
+                <li class="zone z25"></li>
+                <li class="zone z26"></li>
+                <li class="zone z27"></li>
+                <li class="zone z28"></li>
+                <li class="zone z29"></li>
+                <li class="zone z30"></li>
+                <li class="zone z31"></li>
+                <!-- 32 ~ 40 없음 -->
+                <li class="zone z41"></li>
+                <li class="zone z42"></li>
+                <li class="zone z43"></li>
+                <li class="zone z44"></li>
+                <li class="zone z45"></li>
+                <li class="zone z46"></li>
+                <li class="zone z47"></li>
+                <li class="zone z48"></li>
+                <li class="zone z49"></li>
+                <li class="zone z50"></li>
+                <li class="zone z51"></li>
+                <li class="zone z52"></li>
+                <li class="zone z53"></li>
+                <li class="zone z54"></li>
+                <li class="zone z55"></li>
+                <li class="zone z56"></li>
+                <li class="zone z57"></li>
+                <li class="zone z58"></li>
+                <li class="zone z59"></li>
+                <li class="zone z60"></li>
+                <li class="zone z61"></li>
+                <li class="zone z62"></li>
+                <li class="zone z63"></li>
+                <li class="zone z64"></li>
+                <li class="zone z65"></li>
+                <li class="zone z66"></li>
+                <li class="zone z67"></li>
+            </ul>
+            
+            <!-- 팝업 메뉴 -->
+            <nav class="popup-menu">
+                <p class="part-name"><span class="number"></span>번 <span class="name">리어컴비램프(좌)</span></p>
+                <strong class="title">상태 선택</strong>
+                <ul>
+                    <li class="type01">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>교환</span>
+                        </label>
+                    </li>
+                    <li class="type02">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>판금 또는 용접</span>
+                        </label>
+                    </li>
+                    <li class="type03">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>흠집</span>
+                        </label>
+                    </li>
+                    <li class="type04">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>요철</span>
+                        </label>
+                    </li>
+                    <li class="type05">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>부식</span>
+                        </label>
+                    </li>
+                    <li class="type06">
+                        <label>
+                            <input type="checkbox" id="" name="partRepair">
+                            <span>손상</span>
+                        </label>
+                    </li>
+                </ul>
+                <button type="button" class="btn-complete">선택완료</button>
+                <button type="button" class="btn-close">닫기</button>
+            </nav>
+        </div>		
+    </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+//2020
+//차량상태 UI
+var zoneNumber;
+var bedge = '<div class="bedge"></div>'
+var bedges = '<div class="bedge"></div><div class="bedge"></div>'
+
+//부위(숫자) 클릭
+$('.car-part .zone').on('click', function(e){
+    var offsetX = $(this).position().left + 15;
+    var offsetY = $(this).position().top + 15;
+    if($('.car-part .popup-menu').hasClass('opened')){
+        checkboxReset();
+        $('.car-part .popup-menu').fadeIn(300).css({
+            left: offsetX,
+            top: offsetY,
+        });	
+    }else{
+        $('.car-part .popup-menu').addClass('opened').fadeIn(300).css({
+            left: offsetX,
+            top: offsetY,
+        });		
+    }
+    
+    //선택한 부위의 클래스 전역으로 전달
+    thisClass = $(this).attr('class')
+    zoneNumber = thisClass.substr(thisClass.length - 2);
+    
+    //팝업메뉴에 번호 노출
+    $('.car-part .popup-menu .part-name .number').text(zoneNumber);
+    
+    //선택한 부위에 벳지가 이미 있으면 popup menu checkbox checked 처리
+    var bedgeClass = [];
+    var $thisBedges = $(this).children('.bedge');
+    if($thisBedges.length > 0){
+        for(var i = 0; i < $thisBedges.length; i++){
+            var thisBedgeClass = $thisBedges.eq(i).attr('class');
+            bedgeClass.push(thisBedgeClass.substr(thisBedgeClass.length - 6));
+        }
+    }
+
+    if($thisBedges.length == 1){
+        $('.car-part .popup-menu li.' + bedgeClass[0]).find('input[type="checkbox"]').prop('checked', true);
+    }else{
+        $('.car-part .popup-menu li.' + bedgeClass[0]).find('input[type="checkbox"]').prop('checked', true);
+        $('.car-part .popup-menu li.' + bedgeClass[1]).find('input[type="checkbox"]').prop('checked', true);
+    }
+    
+});
+//팝업메뉴 클릭
+/* $('.car-part .popup-menu ul li').on('click', function(){
+    var returnClass;
+    var $choiceZone = $('.zone.'+'z'+zoneNumber);
+    var $choiceZoneBedge = $choiceZone.children('.bedge');
+    
+    //bedge에 선택한 타입의 클래스 부여
+    $choiceZoneBedge.attr('class', 'bedge').addClass(returnClass);
+}); */
+
+
+var popupMenuCheckbox = $('.car-part .popup-menu input[name="partRepair"]');
+
+//팝업메뉴 선택완료 버튼
+$('.car-part .popup-menu .btn-complete').on('click', function(){
+    var $choiceZone = $('.zone.'+'z'+zoneNumber);
+    var checkCnt = $('.car-part .popup-menu input[type="checkbox"]:checked').length;
+    var choiceType = [];
+    
+    //선택한 번호 초기화
+    $choiceZone.html('');
+    
+    //체크 갯수에 따라 선택한 번호에 벳지 추가
+    if(checkCnt === 1){
+        $choiceZone.append(bedge);
+    }else if(checkCnt === 2){
+        $choiceZone.append(bedges);
+    }	
+    
+    for(var i = 0; i < popupMenuCheckbox.length; i++){
+        if(popupMenuCheckbox[i].checked){
+            choiceType.push(popupMenuCheckbox.eq(i).closest('li').attr('class'));
+        }
+    }
+    
+    $choiceZone.children('.bedge').eq(0).addClass(choiceType[0]);
+    $choiceZone.children('.bedge').eq(1).addClass(choiceType[1]);
+    
+    
+    //팝업 닫기
+    $('.car-part .popup-menu').removeClass('opened').fadeOut(300);
+    //checkbox checked 초기화
+    checkboxReset();
+});
+
+$('.car-part .popup-menu .btn-close').on('click', function(){
+    //팝업 닫기
+    $('.car-part .popup-menu').removeClass('opened').fadeOut(300);
+    //checkbox checked 초기화
+    checkboxReset();
+});
+
+$('.car-part .popup-menu input[name="partRepair"]').on('change', function(){
+    //체크 제한할 갯수 : 2 
+    checkboxCntLimit(2, $(this));
+});
+
+//체크박스 선택 가능 갯수 제한
+function checkboxCntLimit(cnt, obj){
+    var checkCnt = 0;
+    
+    for(var i = 0; i < popupMenuCheckbox.length; i++){
+        if(popupMenuCheckbox[i].checked){
+            checkCnt++;
+        }
+    }
+    
+    if(checkCnt > cnt){
+        alert("최대 " + cnt + "개까지 선택 가능합니다.");
+        obj.prop('checked', false);
+        return false;
+    }
+}
+
+
+//checkbox checked 초기화
+function checkboxReset(){
+    for(var i = 0; i < popupMenuCheckbox.length; i++){
+        popupMenuCheckbox.eq(i).prop('checked', false);
+    }
+}
+</script>
+</body>
+</html>
