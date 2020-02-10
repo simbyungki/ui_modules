@@ -1,0 +1,16 @@
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 400;
+ src: url(../font/NanumSquareR.eot);
+ src: url(../font/NanumSquareR.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareR.woff) format('woff'),
+      url(../font/NanumSquareR.ttf) format('truetype');
+}
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 600;
+ src: url(../font/NanumSquareB.eot);
+ src: url(../font/NanumSquareB.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareB.woff) format('woff'),
+      url(../font/NanumSquareB.ttf) format('truetype');
+}
